@@ -2,8 +2,10 @@
   --color-offwhite: #fdebff;
   --text-neutral: #1a1423;
   --primary: #6b2d8c;
+  --primary-darkPurple: #310049;
   --Secondary: #ffd700;
   --Tertiary: #b22222;
+  --gold: #D2B450;
   --bg-gradient: linear-gradient(
     to right,
     #310049 11%,
@@ -13,8 +15,8 @@
 
 }
 
-*{
-  box-sizing: border-box;
+* {
+ box-sizing: border-box;
 }
 body {
   margin: 0;

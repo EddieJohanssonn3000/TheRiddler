@@ -19,4 +19,5 @@ body,
 
 .layout-wrapper main {
   flex: 1;
+  display: flex;
 }
