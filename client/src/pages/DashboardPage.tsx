@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { DoorCard } from "../components/DoorCard";
 import { doors } from "../data/doors";
+import "./DashBoardPage.css"
 
 export function DashboardPage() {
   const [selectedDoor, setSelectedDoor] = useState<number | null>(null);
@@ -16,6 +17,26 @@ export function DashboardPage() {
       <h1>The Riddler</h1>
 
       <section className="door-grid">
+            <section className="dashboard-intro">
+              <h1>Choose your fate</h1>
+
+              <p>
+                Unlock the doors by solving the
+                riddle behind every door
+              </p>
+            </section>
+
+            <section className="centralbank-info">
+              <h2>Centralbank</h2>
+
+              <p>
+                Every door has its price, follow
+                the link to the centralbank and
+                take out the amount you need:
+              </p>
+
+            </section>
+
         {doors.map((door) => (
           <DoorCard
             key={door.id}
