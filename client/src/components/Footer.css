@@ -1,0 +1,14 @@
+.app-footer {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.app-footer__btn {
+  border: none;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  background: #ffd700;
+  color: #1a1423;
+  font-weight: 600;
+}

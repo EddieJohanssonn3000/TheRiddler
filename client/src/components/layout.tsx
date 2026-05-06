@@ -1,16 +1,18 @@
+import Header from "./Header";
+import Footer from "./Footer";
+import "./Layout.css";
+
 type Props = {
   children: React.ReactNode;
 };
 
 function Layout({ children }: Props) {
   return (
-    <>
-      <header>THE RIDDLER</header>
+    <div className="layout-wrapper">
+      <Header />
       <main>{children}</main>
-      <footer>
-        <button>Leave the game</button>
-      </footer>
-    </>
+      <Footer />
+    </div>
   );
 }
 
