@@ -1,7 +1,7 @@
 import { DoorCard } from "./components/DoorCard";
 import { doors } from "./data/doors";
 import "./App.css";
-import Layout from "./components/Layout";
+import Layout from "./components/layout";
 
 function App() {
   const handleDoorClick = (doorId: number) => {
