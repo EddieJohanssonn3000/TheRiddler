@@ -1,10 +1,11 @@
 import { DoorCard } from "./components/DoorCard";
 import { doors } from "./data/doors";
 import "./App.css";
+import Layout from "./components/Layout";
 
 function App() {
   return (
-    <main>
+    <Layout>
       <h1>The Riddler</h1>
 
       <section>
@@ -16,7 +17,7 @@ function App() {
           />
         ))}
       </section>
-    </main>
+    </Layout>
   );
 }
 
