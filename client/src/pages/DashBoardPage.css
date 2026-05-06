@@ -15,9 +15,10 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 1rem;
-    margin-top: 4rem;
-    color: gold;
+    color: var(--Secondary);
+    max-width: 320px;
+    border: 2px solid var(--Secondary);
+    margin-top: 2rem;
   }
   
   .centralbank-info {
@@ -25,9 +26,8 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 1rem;
-    margin-top: 4rem;
     margin-bottom: 4rem;
-    color: gold;
+    color: var(--Secondary);
     max-width: 320px;
+    border: 2px solid var(--Secondary)
   }
