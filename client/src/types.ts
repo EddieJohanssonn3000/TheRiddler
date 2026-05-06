@@ -4,6 +4,7 @@ export type Door = {
   readonly id: number;
   readonly difficulty: Difficulty;
   readonly cost: number;
+  isUnlocked: boolean;
 };
 
 export type Riddle = {
