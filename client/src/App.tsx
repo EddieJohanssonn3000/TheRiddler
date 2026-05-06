@@ -1,5 +1,6 @@
 import { DoorCard } from "./components/DoorCard";
 import { doors } from "./data/doors";
+import "./App.css";
 
 function App() {
   return (
