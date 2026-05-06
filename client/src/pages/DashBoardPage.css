@@ -17,8 +17,19 @@ body {
     text-align: center;
     color: var(--Secondary);
     max-width: 320px;
-    border: 2px solid var(--Secondary);
     margin-top: 2rem;
+  }
+
+  .dashboard-intro h1, .centralbank-info h2  {
+    font-size: 2rem;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .dashboard-intro p, .centralbank-info p {
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 400;
   }
   
   .centralbank-info {
@@ -28,6 +39,6 @@ body {
     text-align: center;
     margin-bottom: 4rem;
     color: var(--Secondary);
-    max-width: 320px;
-    border: 2px solid var(--Secondary)
+    max-width: 320px;   
   }
+
