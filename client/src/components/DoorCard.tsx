@@ -1,3 +1,5 @@
+import "./DoorCard.css";
+import doorImage from "../assets/DoorImg.svg";
 import type { Door } from "../types";
 
 type DoorCardProps = {
@@ -7,14 +9,28 @@ type DoorCardProps = {
 
 export function DoorCard({ door, onClick }: DoorCardProps) {
   return (
-    <button type="button" onClick={onClick}>
-      <h2>{door.difficulty.toUpperCase()}</h2>
+    <article className="door-card">
+      <div className="door-label">
+        <h2>
+          {door.difficulty.toUpperCase()} €{door.cost}
+        </h2>
+      </div>
 
-      <p>Cost: €{door.cost}</p>
+      <div className="door-image-wrapper">
+        <img
+          className="door-image"
+          src={doorImage}
+          alt={`${door.difficulty} door`}
+        />
+      </div>
 
-      <p>
-        {door.isUnlocked ? "Unlocked" : "Locked"}
-      </p>
-    </button>
+      <button
+        className="door-button"
+        type="button"
+        onClick={onClick}
+      >
+        UNLOCK
+      </button>
+    </article>
   );
 }

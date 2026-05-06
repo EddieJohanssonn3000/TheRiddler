@@ -1,16 +1,21 @@
+import { useState } from "react";
 import { DoorCard } from "../components/DoorCard";
 import { doors } from "../data/doors";
 
 export function DashboardPage() {
+  const [selectedDoor, setSelectedDoor] = useState<number | null>(null);
+
   const handleDoorClick = (doorId: number) => {
-    console.log("Clicked door:", doorId);
+    setSelectedDoor(doorId);
+
+    console.log("Selected door:", doorId);
   };
 
   return (
     <main>
       <h1>The Riddler</h1>
 
-      <section>
+      <section className="door-grid">
         {doors.map((door) => (
           <DoorCard
             key={door.id}
@@ -19,6 +24,10 @@ export function DashboardPage() {
           />
         ))}
       </section>
+
+      {selectedDoor && (
+        <p>Selected door: {selectedDoor}</p>
+      )}
     </main>
   );
 }
