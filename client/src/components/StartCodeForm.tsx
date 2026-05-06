@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./StartCodeForm.css";
 
 function StartCodeForm() {
   const [startCode, setStartCode] = useState("");
@@ -17,19 +18,24 @@ function StartCodeForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="start-code">Enter the code</label>
+    <form className="start-code-form" onSubmit={handleSubmit}>
+      <label className="start-code-form__label" htmlFor="start-code">
+        Enter the code
+      </label>
 
       <input
+        className="start-code-form__input"
         id="start-code"
         type="text"
         value={startCode}
         onChange={(event) => setStartCode(event.target.value)}
       />
 
-      <button type="submit">Lock in</button>
+      <button className="start-code-form__button" type="submit">
+        Lock in
+      </button>
 
-      {message && <p>{message}</p>}
+      {message && <p className="start-code-form__message">{message}</p>}
     </form>
   );
 }
