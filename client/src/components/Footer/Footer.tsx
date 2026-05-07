@@ -4,7 +4,7 @@ import "./Footer.css";
 function Footer() {
   return (
     <footer className="app-footer">
-      <Link to="/" className="app-btn app-btn--white">
+      <Link to="/" className="app-footer__link">
         Leave the game
       </Link>
     </footer>
