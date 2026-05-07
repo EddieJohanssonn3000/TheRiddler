@@ -61,6 +61,27 @@ body {
   opacity: 0.92;
 }
 
+.app-input {
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--Tertiary);
+  background: rgba(255, 252, 245, 0.88);
+  color: var(--text-neutral);
+  font-size: 1rem;
+  font-family: inherit;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: border-color 0.2s ease;
+}
+
+.app-input:focus {
+  outline: none;
+  border-color: var(--Tertiary);
+}
+
+.app-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* #root {
   max-width: 100%;
   margin: 0 auto;

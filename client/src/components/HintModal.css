@@ -1,0 +1,35 @@
+.hint-modal__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+.hint-modal__overlay .golden-card {
+  position: relative;
+
+  width: min(80vw, 800px);
+  height: min(70vh, 600px);
+
+  overflow-y: auto;
+}
+
+.hint-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.hint-modal__input {
+  width: 100%;
+}
+
+.hint-modal__button {
+  padding: 0.95rem 1.5rem !important;
+}
