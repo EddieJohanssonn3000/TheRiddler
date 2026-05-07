@@ -1,5 +1,6 @@
 import "./DoorCard.css";
 import doorImage from "../assets/DoorImg.svg";
+import lockIcon from "../assets/Lock.svg";
 import type { Door } from "../types";
 
 type DoorCardProps = {
@@ -21,6 +22,12 @@ export function DoorCard({ door, onClick }: DoorCardProps) {
           className="door-image"
           src={doorImage}
           alt={`${door.difficulty} door`}
+        />
+        <div className="door-lock-ring"></div>
+        <img
+          className="door-lock"
+          src={lockIcon}
+          alt="locked"
         />
       </div>
 
