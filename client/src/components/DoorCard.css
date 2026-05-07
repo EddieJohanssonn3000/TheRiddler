@@ -29,12 +29,38 @@
   .door-image-wrapper {
     position: relative;
     width: 100%;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .door-image {
     width: 100%;
     display: block;
+  }
+
+  .door-lock-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.8) 0%, rgba(255, 0, 0, 0.3) 70%, transparent 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.8), inset 0 0 30px rgba(255, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  .door-lock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 150px;
+    object-fit: contain;
+    z-index: 2;
   }
   
   .door-button {
