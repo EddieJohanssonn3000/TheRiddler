@@ -1,31 +1,28 @@
 import StartCodeForm from "../components/StartCodeForm";
 // import { Link } from "react-router-dom";
-import "./HomePage.css";
+import "../styles/goldenCard.css";
 
 function HomePage() {
   return (
-    <section className="home-page">
+    <section className="golden-card">
       <span
-        className="home-page__corner home-page__corner--top-left"
+        className="golden-card__corner golden-card__corner--top-left"
         aria-hidden="true"
       />
       <span
-        className="home-page__corner home-page__corner--top-right"
+        className="golden-card__corner golden-card__corner--top-right"
         aria-hidden="true"
       />
       <span
-        className="home-page__corner home-page__corner--bottom-left"
+        className="golden-card__corner golden-card__corner--bottom-left"
         aria-hidden="true"
       />
       <span
-        className="home-page__corner home-page__corner--bottom-right"
+        className="golden-card__corner golden-card__corner--bottom-right"
         aria-hidden="true"
       />
-      <h1 className="home-page__title">Step in to the Riddlers Escaperoom</h1>
+      <h1 className="golden-card__title">Step in to the Riddlers Escaperoom</h1>
       <StartCodeForm />
-      {/* <Link className="home-page__link" to="/dashboard">
-        Go to dashboard
-      </Link> */}
     </section>
   );
 }

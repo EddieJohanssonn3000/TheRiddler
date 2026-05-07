@@ -1,4 +1,5 @@
-.home-page {
+/* Delade "golden card"-stilar, återanvändbara på flera sidor */
+.golden-card {
   position: relative;
   display: grid;
   gap: 3rem;
@@ -11,7 +12,7 @@
   background: var(--primary-darkPurple);
 }
 
-.home-page__title {
+.golden-card__title {
   margin: 0;
   text-align: center;
   color: var(--Secondary);
@@ -19,7 +20,7 @@
   opacity: 85%;
 }
 
-.home-page__title::after {
+.golden-card__title::after {
   content: "";
   display: block;
   width: 70%;
@@ -30,7 +31,7 @@
   opacity: 0.8;
 }
 
-.home-page__corner {
+.golden-card__corner {
   position: absolute;
   width: 72px;
   height: 72px;
@@ -39,25 +40,25 @@
   pointer-events: none;
 }
 
-.home-page__corner--top-left {
+.golden-card__corner--top-left {
   top: 1.5rem;
   left: 1.5rem;
   border-width: 4px 0 0 4px;
 }
 
-.home-page__corner--top-right {
+.golden-card__corner--top-right {
   top: 1.5rem;
   right: 1.5rem;
   border-width: 4px 4px 0 0;
 }
 
-.home-page__corner--bottom-left {
+.golden-card__corner--bottom-left {
   bottom: 1.5rem;
   left: 1.5rem;
   border-width: 0 0 4px 4px;
 }
 
-.home-page__corner--bottom-right {
+.golden-card__corner--bottom-right {
   right: 1.5rem;
   bottom: 1.5rem;
   border-width: 0 4px 4px 0;
