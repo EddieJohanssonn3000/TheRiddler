@@ -31,7 +31,7 @@ function StartCodeForm() {
         onChange={(event) => setStartCode(event.target.value)}
       />
 
-      <button className="start-code-form__button" type="submit">
+      <button className="app-btn app-btn--red" type="submit">
         Lock in
       </button>
 

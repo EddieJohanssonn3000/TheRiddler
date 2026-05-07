@@ -54,9 +54,7 @@ function RiddlePage() {
   };
 
   return (
-    <section className="golden-card">
-      {/* <h1 className="golden-card__title">The Golden Riddle</h1> */}
-
+    <div className="riddle-page__wrapper">
       <div className="riddle-page__attempts">
         <div className="riddle-page__keys">
           {[0, 1, 2].map((index) => (
@@ -73,35 +71,39 @@ function RiddlePage() {
         </p>
       </div>
 
-      <p className="riddle-page__question">{currentRiddle.question}</p>
+      <section className="golden-card">
+        {/* <h1 className="golden-card__title">The Golden Riddle</h1> */}
 
-      <form className="riddle-page__form" onSubmit={handleSubmit}>
-        <input
-          id="answer"
-          type="text"
-          className="riddle-page__input"
-          placeholder="Enter your answer..."
-          value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
-          disabled={attempts <= 0}
-        />
-        <button
-          type="submit"
-          className="riddle-page__button"
-          disabled={attempts <= 0}
-        >
-          Submit Answer
-        </button>
-      </form>
+        <p className="riddle-page__question">{currentRiddle.question}</p>
 
-      {feedback && (
-        <p
-          className={`riddle-page__feedback riddle-page__feedback--${feedback.type}`}
-        >
-          {feedback.message}
-        </p>
-      )}
-    </section>
+        <form className="riddle-page__form" onSubmit={handleSubmit}>
+          <input
+            id="answer"
+            type="text"
+            className="riddle-page__input"
+            placeholder="Enter your answer..."
+            value={answer}
+            onChange={(e) => setAnswer(e.target.value)}
+            disabled={attempts <= 0}
+          />
+          <button
+            type="submit"
+            className="app-btn app-btn--red"
+            disabled={attempts <= 0}
+          >
+            Submit Answer
+          </button>
+        </form>
+
+        {feedback && (
+          <p
+            className={`riddle-page__feedback riddle-page__feedback--${feedback.type}`}
+          >
+            {feedback.message}
+          </p>
+        )}
+      </section>
+    </div>
   );
 }
 

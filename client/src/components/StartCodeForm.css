@@ -31,21 +31,6 @@
   box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.15);
 }
 
-.start-code-form__button {
-  border: none;
-  padding: 0.85rem 1rem;
-  cursor: pointer;
-  background: var(--Tertiary);
-  color: #1a1423;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.start-code-form__button:hover {
-  filter: brightness(1.05);
-}
-
 .start-code-form__message {
   margin: 0;
   color: var(--Secondary);

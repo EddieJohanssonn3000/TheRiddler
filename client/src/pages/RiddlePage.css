@@ -1,9 +1,19 @@
+.riddle-page__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 2rem;
+}
+
 .riddle-page__attempts {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.8rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  margin-top: -2rem;
+  padding-top: 3rem;
 }
 
 .riddle-page__keys {
@@ -29,8 +39,9 @@
 .riddle-page__question {
   color: var(--Secondary);
   margin: 0 0 1.5rem 0;
-  font-size: 1.1rem;
+  font-size: 1.8rem;
   line-height: 1.6;
+  text-align: center;
 }
 
 .riddle-page__form {
@@ -55,26 +66,6 @@
 }
 
 .riddle-page__input:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.riddle-page__button {
-  padding: 0.8rem 1.5rem;
-  background: var(--gold);
-  color: var(--text-neutral);
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
-}
-
-.riddle-page__button:hover:not(:disabled) {
-  opacity: 0.9;
-}
-
-.riddle-page__button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
