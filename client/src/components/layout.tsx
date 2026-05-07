@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import "./Layout.css";
@@ -7,11 +8,14 @@ type Props = {
 };
 
 function Layout({ children }: Props) {
+  const location = useLocation();
+  const showFooter = location.pathname !== "/";
+
   return (
     <div className="layout-wrapper">
       <Header />
       <main>{children}</main>
-      <Footer />
+      {showFooter && <Footer />}
     </div>
   );
 }

@@ -11,4 +11,11 @@
   background: #ffd700;
   color: #1a1423;
   font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.app-footer__btn:hover {
+  opacity: 0.9;
 }
