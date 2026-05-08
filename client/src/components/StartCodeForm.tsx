@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./StartCodeForm.css";
 
 function StartCodeForm() {
   const [startCode, setStartCode] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
@@ -15,6 +17,9 @@ function StartCodeForm() {
 
     // Temporary mock until Centralbank API is ready
     setMessage("Code accepted. Welcome to The Riddler!");
+
+    // Redirect to dashboard after successful code verification
+    navigate("/dashboard");
   }
 
   return (
