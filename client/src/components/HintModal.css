@@ -26,6 +26,35 @@
   width: 100%;
 }
 
+.hint-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.hint-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  background: transparent;
+  border: 2px solid transparent;
+  color: var(--Secondary);
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.hint-modal__close:hover,
+.hint-modal__close:focus {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: var(--Secondary);
+  outline: none;
+}
+
 .hint-modal__input {
   width: 100%;
 }

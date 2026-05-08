@@ -46,6 +46,15 @@ function HintModal({ isOpen, onClose, onValidate }: HintModalProps) {
 
   return (
     <div className="hint-modal__overlay" role="presentation" onClick={onClose}>
+      <button
+        type="button"
+        className="hint-modal__close"
+        aria-label="Close hint modal"
+        onClick={onClose}
+      >
+        ×
+      </button>
+
       <section
         className="golden-card"
         role="dialog"
