@@ -15,20 +15,10 @@
 
 .start-code-form__input {
   width: 100%;
-  padding: 0.85rem 1rem;
-  border: 2px solid var(--Tertiary);
-  color: var(--text-neutral);
-  font-size: 1rem;
-  outline: none;
 }
 
 .start-code-form__input::placeholder {
   color: var(--color-offwhite);
-}
-
-.start-code-form__input:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.15);
 }
 
 .start-code-form__message {

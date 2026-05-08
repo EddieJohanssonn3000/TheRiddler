@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { riddles } from "../data/riddles";
 import keyGold from "../assets/keygold.png";
 import keyBlack from "../assets/keyblack.png";
-import "../styles/goldenCard.css";
+import HintModal from "../components/HintModal";
 import "./RiddlePage.css";
 
 function RiddlePage() {
@@ -10,6 +10,8 @@ function RiddlePage() {
     riddles[Math.floor(Math.random() * riddles.length)],
   );
   const [answer, setAnswer] = useState("");
+  const [isHintModalOpen, setIsHintModalOpen] = useState(false);
+  const [isHintRevealed, setIsHintRevealed] = useState(false);
   const [feedback, setFeedback] = useState<{
     message: string;
     type: "success" | "error";
@@ -20,6 +22,17 @@ function RiddlePage() {
   useEffect(() => {
     setCurrentRiddle(riddles[Math.floor(Math.random() * riddles.length)]);
   }, []);
+
+  const handleHintValidation = async (transferCode: string) => {
+    const isValid = transferCode.trim().length > 0;
+
+    if (isValid) {
+      setIsHintRevealed(true);
+      setIsHintModalOpen(false);
+    }
+
+    return isValid;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,7 +52,7 @@ function RiddlePage() {
 
       if (remainingAttempts <= 0) {
         setFeedback({
-          message: "Game Over! No attempts remaining.",
+          message: `Game Over! The Correct answer is ${currentRiddle.answer}`,
           type: "error",
         });
       } else {
@@ -71,16 +84,16 @@ function RiddlePage() {
         </p>
       </div>
 
-      <section className="golden-card">
-        {/* <h1 className="golden-card__title">The Golden Riddle</h1> */}
+      <section className="riddle-card">
+        <span className="riddle-card__tape riddle-card__tape--left" />
+        <span className="riddle-card__tape riddle-card__tape--right" />
+        <p className="riddle-card__question">{currentRiddle.question}</p>
 
-        <p className="riddle-page__question">{currentRiddle.question}</p>
-
-        <form className="riddle-page__form" onSubmit={handleSubmit}>
+        <form className="riddle-card__form" onSubmit={handleSubmit}>
           <input
             id="answer"
             type="text"
-            className="riddle-page__input"
+            className="app-input riddle-card__input"
             placeholder="Enter your answer..."
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
@@ -97,11 +110,38 @@ function RiddlePage() {
 
         {feedback && (
           <p
-            className={`riddle-page__feedback riddle-page__feedback--${feedback.type}`}
+            className={`riddle-card__feedback riddle-card__feedback--${feedback.type}`}
           >
             {feedback.message}
           </p>
         )}
+      </section>
+
+      {!isHintRevealed && (
+        <button
+          type="button"
+          className="riddle-page__hint-trigger"
+          onClick={() => setIsHintModalOpen(true)}
+        >
+          Need a hint? 2€
+        </button>
+      )}
+
+      <HintModal
+        isOpen={isHintModalOpen}
+        onClose={() => setIsHintModalOpen(false)}
+        onValidate={handleHintValidation}
+      />
+
+      <section
+        className={`riddle-page__hint-panel ${
+          isHintRevealed ? "riddle-page__hint-panel--open" : ""
+        }`}
+        aria-live="polite"
+      >
+        <div className="riddle-page__hint-panel-inner">
+          <p className="riddle-page__hint-text">{currentRiddle.hint}</p>
+        </div>
       </section>
     </div>
   );

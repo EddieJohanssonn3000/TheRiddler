@@ -24,7 +24,7 @@ function StartCodeForm() {
       </label>
 
       <input
-        className="start-code-form__input"
+        className="app-input start-code-form__input"
         id="start-code"
         type="text"
         value={startCode}
