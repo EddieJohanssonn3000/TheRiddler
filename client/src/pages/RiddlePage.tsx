@@ -5,6 +5,7 @@ import keyGold from "../assets/keygold.png";
 import keyBlack from "../assets/keyblack.png";
 import { HintModal, ResultModal } from "../components/Modals";
 import Footer from "../components/Footer";
+import type { Difficulty } from "../types";
 import "./RiddlePage.css";
 
 function RiddlePage() {
@@ -25,6 +26,7 @@ function RiddlePage() {
     isCorrect: boolean;
     message: string;
     correctAnswer?: string;
+    solvedDifficulty?: Difficulty;
   } | null>(null);
 
   useEffect(() => {
@@ -63,6 +65,7 @@ function RiddlePage() {
       setResultModalData({
         isCorrect: true,
         message: "Well done! You've solved the riddle!",
+        solvedDifficulty: currentRiddle.difficulty,
       });
       setIsResultModalOpen(true);
       setFeedback({
@@ -168,6 +171,7 @@ function RiddlePage() {
           isCorrect={resultModalData.isCorrect}
           message={resultModalData.message}
           correctAnswer={resultModalData.correctAnswer}
+          solvedDifficulty={resultModalData.solvedDifficulty}
         />
       )}
 

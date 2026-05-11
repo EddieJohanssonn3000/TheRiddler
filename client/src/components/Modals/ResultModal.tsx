@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import type { Difficulty } from "../../types";
 import "../../styles/goldenCard.css";
 import "./ResultModal.css";
 
@@ -7,6 +8,7 @@ type ResultModalProps = {
   isCorrect: boolean;
   message: string;
   correctAnswer?: string;
+  solvedDifficulty?: Difficulty;
 };
 
 function ResultModal({
@@ -14,6 +16,7 @@ function ResultModal({
   isCorrect,
   message,
   correctAnswer,
+  solvedDifficulty,
 }: ResultModalProps) {
   const navigate = useNavigate();
 
@@ -22,7 +25,9 @@ function ResultModal({
   }
 
   const handleBackToDoors = () => {
-    navigate("/dashboard");
+    navigate("/dashboard", {
+      state: isCorrect ? { solvedDifficulty } : undefined,
+    });
   };
 
   return (
@@ -70,7 +75,7 @@ function ResultModal({
           className="app-btn app-btn--red result-modal__button"
           onClick={handleBackToDoors}
         >
-          Back to Doors
+          {isCorrect ? "Leave the riddle" : "Back to Doors"}
         </button>
       </section>
     </div>
