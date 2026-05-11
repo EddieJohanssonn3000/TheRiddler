@@ -2,6 +2,7 @@ import "./DoorCard.css";
 import doorImage from "../assets/DoorImg.svg";
 import openDoorImage from "../assets/OpenDoorImg.svg";
 import lockIcon from "../assets/Lock.svg";
+import { StampDisplay } from "./StampDisplay";
 import type { Door } from "../types";
 
 type DoorCardProps = {
@@ -23,15 +24,23 @@ export function DoorCard({ door, isUnlocked, onClick }: DoorCardProps) {
         <img
           className="door-image"
           src={isUnlocked ? openDoorImage : doorImage}
-          alt={isUnlocked ? `${door.difficulty} door opened` : `${door.difficulty} door`}
+          alt={
+            isUnlocked
+              ? `${door.difficulty} door opened`
+              : `${door.difficulty} door`
+          }
         />
         {!isUnlocked && <div className="door-lock-ring"></div>}
-        {!isUnlocked && <img className="door-lock" src={lockIcon} alt="locked" />}
+        {!isUnlocked && (
+          <img className="door-lock" src={lockIcon} alt="locked" />
+        )}
       </div>
 
       <button className="door-button" type="button" onClick={onClick}>
         {isUnlocked ? "ESCAPE" : "UNLOCK"}
       </button>
+
+      <StampDisplay isUnlocked={isUnlocked} />
     </article>
   );
 }
