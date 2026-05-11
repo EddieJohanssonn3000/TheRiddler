@@ -16,7 +16,7 @@
 
 .stamp-display__text {
   font-size: 0.75rem;
-  color: var(--Primary);
+  color: var(--Secondary);
   font-weight: 700;
   margin: 0;
   letter-spacing: 0.05em;

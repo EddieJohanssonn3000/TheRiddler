@@ -43,8 +43,6 @@ export function DashboardPage() {
     setSelectedDoor(doorId);
     setTransferCode("");
     setValidationMessage("");
-
-    console.log("Selected door:", doorId);
   };
 
   const handleCloseModal = () => {

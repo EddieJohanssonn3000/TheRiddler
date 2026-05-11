@@ -1,7 +1,8 @@
 import "./DoorCard.css";
-import doorImage from "../assets/DoorImg.svg";
-import openDoorImage from "../assets/OpenDoorImg.svg";
+import doorImage from "../assets/NewDoor.png";
+import openDoorImage from "../assets/NewDoorUnlocked.png";
 import lockIcon from "../assets/Lock.svg";
+import { StampDisplay } from "./StampDisplay";
 import type { Door } from "../types";
 
 type DoorCardProps = {
