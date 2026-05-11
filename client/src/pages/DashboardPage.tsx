@@ -1,16 +1,37 @@
-import { useState, type FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState, type FormEvent } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { DoorCard } from "../components/DoorCard";
 import { DoorUnlockModal } from "../components/Modals";
 import { doors } from "../data/doors";
 import { validateTransferCode } from "../services/CentralbankApi";
+import type { Difficulty } from "../types";
 import "./DashBoardPage.css";
 
 export function DashboardPage() {
   const [selectedDoor, setSelectedDoor] = useState<number | null>(null);
   const [transferCode, setTransferCode] = useState("");
   const [validationMessage, setValidationMessage] = useState("");
+  const [unlockedDifficulties, setUnlockedDifficulties] = useState<Difficulty[]>([]);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const state = location.state as { solvedDifficulty?: Difficulty } | null;
+    const solvedDifficulty = state?.solvedDifficulty;
+
+    if (!solvedDifficulty) {
+      return;
+    }
+
+    setUnlockedDifficulties((current) => {
+      if (current.includes(solvedDifficulty)) {
+        return current;
+      }
+
+      const next = [...current, solvedDifficulty];
+      return next;
+    });
+  }, [location.state]);
 
   const handleDoorClick = (doorId: number) => {
     setSelectedDoor(doorId);
@@ -75,6 +96,7 @@ export function DashboardPage() {
           <DoorCard
             key={door.id}
             door={door}
+            isUnlocked={unlockedDifficulties.includes(door.difficulty)}
             onClick={() => handleDoorClick(door.id)}
           />
         ))}

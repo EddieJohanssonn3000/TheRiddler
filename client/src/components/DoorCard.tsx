@@ -1,14 +1,16 @@
 import "./DoorCard.css";
 import doorImage from "../assets/DoorImg.svg";
+import openDoorImage from "../assets/OpenDoorImg.svg";
 import lockIcon from "../assets/Lock.svg";
 import type { Door } from "../types";
 
 type DoorCardProps = {
   door: Door;
+  isUnlocked: boolean;
   onClick: () => void;
 };
 
-export function DoorCard({ door, onClick }: DoorCardProps) {
+export function DoorCard({ door, isUnlocked, onClick }: DoorCardProps) {
   return (
     <article className="door-card">
       <div className="door-label">
@@ -20,23 +22,15 @@ export function DoorCard({ door, onClick }: DoorCardProps) {
       <div className="door-image-wrapper">
         <img
           className="door-image"
-          src={doorImage}
-          alt={`${door.difficulty} door`}
+          src={isUnlocked ? openDoorImage : doorImage}
+          alt={isUnlocked ? `${door.difficulty} door opened` : `${door.difficulty} door`}
         />
-        <div className="door-lock-ring"></div>
-        <img
-          className="door-lock"
-          src={lockIcon}
-          alt="locked"
-        />
+        {!isUnlocked && <div className="door-lock-ring"></div>}
+        {!isUnlocked && <img className="door-lock" src={lockIcon} alt="locked" />}
       </div>
 
-      <button
-        className="door-button"
-        type="button"
-        onClick={onClick}
-      >
-        UNLOCK
+      <button className="door-button" type="button" onClick={onClick}>
+        {isUnlocked ? "ESCAPE" : "UNLOCK"}
       </button>
     </article>
   );
