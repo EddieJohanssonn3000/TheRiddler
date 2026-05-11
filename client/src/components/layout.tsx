@@ -9,7 +9,8 @@ type Props = {
 
 function Layout({ children }: Props) {
   const location = useLocation();
-  const showFooter = location.pathname !== "/";
+  const showFooter =
+    location.pathname !== "/" && location.pathname !== "/riddle";
 
   return (
     <div className="layout-wrapper">
