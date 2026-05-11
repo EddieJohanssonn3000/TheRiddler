@@ -42,3 +42,29 @@ body {
     max-width: 320px;   
   }
 
+  @media (min-width: 1024px) {
+    .door-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 320px));
+      justify-content: center;
+      align-items: start;
+      column-gap: 2rem;
+      row-gap: 3rem;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .dashboard-intro,
+    .centralbank-info {
+      grid-column: 1 / -1;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .centralbank-info {
+      margin-bottom: 2rem;
+    }
+  }
+
