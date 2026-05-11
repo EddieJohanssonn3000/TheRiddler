@@ -11,9 +11,16 @@ export function DashboardPage() {
   const [selectedDoor, setSelectedDoor] = useState<number | null>(null);
   const [transferCode, setTransferCode] = useState("");
   const [validationMessage, setValidationMessage] = useState("");
-  const [unlockedDifficulties, setUnlockedDifficulties] = useState<Difficulty[]>([]);
+  const [unlockedDifficulties, setUnlockedDifficulties] = useState<Difficulty[]>(() => {
+    const stored = window.sessionStorage.getItem("unlockedDifficulties");
+    return stored ? JSON.parse(stored) : [];
+  });
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    window.sessionStorage.setItem("unlockedDifficulties", JSON.stringify(unlockedDifficulties));
+  }, [unlockedDifficulties]);
 
   useEffect(() => {
     const state = location.state as { solvedDifficulty?: Difficulty } | null;
@@ -28,8 +35,7 @@ export function DashboardPage() {
         return current;
       }
 
-      const next = [...current, solvedDifficulty];
-      return next;
+      return [...current, solvedDifficulty];
     });
   }, [location.state]);
 

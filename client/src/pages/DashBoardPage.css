@@ -6,7 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4rem; 
+    gap: 7rem; 
     width: 100%;
   }
   
@@ -48,8 +48,8 @@ body {
       grid-template-columns: repeat(3, minmax(0, 320px));
       justify-content: center;
       align-items: start;
-      column-gap: 2rem;
-      row-gap: 3rem;
+      column-gap: 7rem;
+      row-gap: 4rem;
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
