@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/riddle" element={<RiddlePage />} />
+        <Route path="/riddle/:difficulty" element={<RiddlePage />} />
       </Routes>
     </Layout>
   );

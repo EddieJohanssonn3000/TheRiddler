@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import { DoorCard } from "../components/DoorCard";
 import { DoorUnlockModal } from "../components/DoorUnlockModal.tsx";
 import { doors } from "../data/doors";
@@ -9,6 +10,7 @@ export function DashboardPage() {
   const [selectedDoor, setSelectedDoor] = useState<number | null>(null);
   const [transferCode, setTransferCode] = useState("");
   const [validationMessage, setValidationMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleDoorClick = (doorId: number) => {
     setSelectedDoor(doorId);
@@ -40,6 +42,12 @@ export function DashboardPage() {
 
     const result = await validateTransferCode(transferCode, door.cost);
     setValidationMessage(result.message);
+
+    if (result.ok) {
+      setSelectedDoor(null);
+      setTransferCode("");
+      navigate(`/riddle/${door.difficulty}`);
+    }
   };
 
   return (

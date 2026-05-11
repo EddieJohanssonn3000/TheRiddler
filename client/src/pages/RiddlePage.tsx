@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Navigate, useParams } from "react-router-dom";
 import { riddles } from "../data/riddles";
 import keyGold from "../assets/keygold.png";
 import keyBlack from "../assets/keyblack.png";
@@ -6,9 +7,8 @@ import HintModal from "../components/HintModal";
 import "./RiddlePage.css";
 
 function RiddlePage() {
-  const [currentRiddle, setCurrentRiddle] = useState(
-    riddles[Math.floor(Math.random() * riddles.length)],
-  );
+  const { difficulty } = useParams();
+  const currentRiddle = riddles.find((riddle) => riddle.difficulty === difficulty);
   const [answer, setAnswer] = useState("");
   const [isHintModalOpen, setIsHintModalOpen] = useState(false);
   const [isHintRevealed, setIsHintRevealed] = useState(false);
@@ -18,10 +18,17 @@ function RiddlePage() {
   } | null>(null);
   const [attempts, setAttempts] = useState(3);
 
-  // Välj en gåta bara en gång när komponenten mountas
   useEffect(() => {
-    setCurrentRiddle(riddles[Math.floor(Math.random() * riddles.length)]);
-  }, []);
+    setAnswer("");
+    setIsHintModalOpen(false);
+    setIsHintRevealed(false);
+    setFeedback(null);
+    setAttempts(3);
+  }, [currentRiddle?.id]);
+
+  if (!currentRiddle) {
+    return <Navigate to="/dashboard" replace />;
+  }
 
   const handleHintValidation = async (transferCode: string) => {
     const isValid = transferCode.trim().length > 0;
