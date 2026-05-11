@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/goldenCard.css";
+import "../../styles/goldenCard.css";
 import "./HintModal.css";
 
 type HintModalProps = {

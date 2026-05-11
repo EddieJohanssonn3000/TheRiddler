@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { DoorCard } from "../components/DoorCard";
-import { DoorUnlockModal } from "../components/DoorUnlockModal.tsx";
+import { DoorUnlockModal } from "../components/Modals";
 import { doors } from "../data/doors";
 import { validateTransferCode } from "../services/CentralbankApi";
 import "./DashBoardPage.css";
@@ -26,7 +26,9 @@ export function DashboardPage() {
     setValidationMessage("");
   };
 
-  const handleSubmitTransferCode = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmitTransferCode = async (
+    event: FormEvent<HTMLFormElement>,
+  ) => {
     event.preventDefault();
 
     if (selectedDoor === null) {
@@ -53,21 +55,21 @@ export function DashboardPage() {
   return (
     <main>
       <section className="door-grid">
-            <section className="dashboard-intro">
-              <h1>Choose your fate</h1>
-              <p>
-              The gates are heavy, and the secrets are many. Step through, if you dare to lose your way
-              </p>
-            </section>
+        <section className="dashboard-intro">
+          <h1>Choose your fate</h1>
+          <p>
+            The gates are heavy, and the secrets are many. Step through, if you
+            dare to lose your way
+          </p>
+        </section>
 
-            <section className="centralbank-info">
-              <h2>Centralbank</h2>
-              <p>
-                Every door has its price, follow
-                the link to the centralbank and
-                take out the amount you need:
-              </p>
-            </section>
+        <section className="centralbank-info">
+          <h2>Centralbank</h2>
+          <p>
+            Every door has its price, follow the link to the centralbank and
+            take out the amount you need:
+          </p>
+        </section>
 
         {doors.map((door) => (
           <DoorCard

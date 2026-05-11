@@ -3,13 +3,15 @@ import { Navigate, useParams } from "react-router-dom";
 import { riddles } from "../data/riddles";
 import keyGold from "../assets/keygold.png";
 import keyBlack from "../assets/keyblack.png";
-import HintModal from "../components/HintModal";
+import { HintModal, ResultModal } from "../components/Modals";
 import Footer from "../components/Footer";
 import "./RiddlePage.css";
 
 function RiddlePage() {
   const { difficulty } = useParams();
-  const currentRiddle = riddles.find((riddle) => riddle.difficulty === difficulty);
+  const currentRiddle = riddles.find(
+    (riddle) => riddle.difficulty === difficulty,
+  );
   const [answer, setAnswer] = useState("");
   const [isHintModalOpen, setIsHintModalOpen] = useState(false);
   const [isHintRevealed, setIsHintRevealed] = useState(false);
@@ -18,6 +20,12 @@ function RiddlePage() {
     type: "success" | "error";
   } | null>(null);
   const [attempts, setAttempts] = useState(3);
+  const [isResultModalOpen, setIsResultModalOpen] = useState(false);
+  const [resultModalData, setResultModalData] = useState<{
+    isCorrect: boolean;
+    message: string;
+    correctAnswer?: string;
+  } | null>(null);
 
   useEffect(() => {
     setAnswer("");
@@ -25,6 +33,8 @@ function RiddlePage() {
     setIsHintRevealed(false);
     setFeedback(null);
     setAttempts(3);
+    setIsResultModalOpen(false);
+    setResultModalData(null);
   }, [currentRiddle?.id]);
 
   if (!currentRiddle) {
@@ -50,6 +60,11 @@ function RiddlePage() {
     const normalizedCorrect = currentRiddle.answer.toLowerCase().trim();
 
     if (normalizedAnswer === normalizedCorrect) {
+      setResultModalData({
+        isCorrect: true,
+        message: "Well done! You've solved the riddle!",
+      });
+      setIsResultModalOpen(true);
       setFeedback({
         message: "Correct! Well done!",
         type: "success",
@@ -59,6 +74,12 @@ function RiddlePage() {
       setAttempts(remainingAttempts);
 
       if (remainingAttempts <= 0) {
+        setResultModalData({
+          isCorrect: false,
+          message: "Game Over! You've run out of attempts.",
+          correctAnswer: currentRiddle.answer,
+        });
+        setIsResultModalOpen(true);
         setFeedback({
           message: `Game Over! The Correct answer is ${currentRiddle.answer}`,
           type: "error",
@@ -140,6 +161,15 @@ function RiddlePage() {
         onClose={() => setIsHintModalOpen(false)}
         onValidate={handleHintValidation}
       />
+
+      {resultModalData && (
+        <ResultModal
+          isOpen={isResultModalOpen}
+          isCorrect={resultModalData.isCorrect}
+          message={resultModalData.message}
+          correctAnswer={resultModalData.correctAnswer}
+        />
+      )}
 
       <section
         className={`riddle-page__hint-panel ${

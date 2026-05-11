@@ -1,6 +1,6 @@
 import type { FormEvent } from "react";
-import type { Door } from "../types";
-import "../styles/goldenCard.css";
+import type { Door } from "../../types";
+import "../../styles/goldenCard.css";
 import "./DoorUnlockModal.css";
 
 type DoorUnlockModalProps = {
@@ -21,7 +21,11 @@ export function DoorUnlockModal({
   onTransferCodeChange,
 }: DoorUnlockModalProps) {
   return (
-    <div className="door-unlock-modal__overlay" role="presentation" onClick={onClose}>
+    <div
+      className="door-unlock-modal__overlay"
+      role="presentation"
+      onClick={onClose}
+    >
       <section
         className="golden-card door-unlock-modal"
         role="dialog"
@@ -52,7 +56,10 @@ export function DoorUnlockModal({
           <h2 id="door-unlock-modal-title" className="golden-card__title">
             Validate your key
           </h2>
-          <p id="door-unlock-modal-description" className="door-unlock-modal__description">
+          <p
+            id="door-unlock-modal-description"
+            className="door-unlock-modal__description"
+          >
             {door.difficulty.toUpperCase()} gate, {door.cost}€ transfer needed.
           </p>
         </div>
@@ -81,7 +88,11 @@ export function DoorUnlockModal({
           )}
         </form>
 
-        <button className="door-unlock-modal__close" type="button" onClick={onClose}>
+        <button
+          className="door-unlock-modal__close"
+          type="button"
+          onClick={onClose}
+        >
           Close
         </button>
       </section>
