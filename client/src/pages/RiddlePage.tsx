@@ -4,6 +4,7 @@ import { riddles } from "../data/riddles";
 import keyGold from "../assets/keygold.png";
 import keyBlack from "../assets/keyblack.png";
 import HintModal from "../components/HintModal";
+import Footer from "../components/Footer";
 import "./RiddlePage.css";
 
 function RiddlePage() {
@@ -150,6 +151,8 @@ function RiddlePage() {
           <p className="riddle-page__hint-text">{currentRiddle.hint}</p>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }
