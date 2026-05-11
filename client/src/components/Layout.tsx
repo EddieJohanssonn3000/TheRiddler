@@ -15,7 +15,7 @@ function Layout({ children }: Props) {
 
   return (
     <div className="layout-wrapper">
-      <Header />
+      {showHeader && <Header />}
       <main>{children}</main>
       {showFooter && <Footer />}
     </div>
