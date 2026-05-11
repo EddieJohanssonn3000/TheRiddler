@@ -1,7 +1,7 @@
 import "./DoorCard.css";
 import doorImage from "../assets/NewDoor.png";
 import openDoorImage from "../assets/NewDoorUnlocked.png";
-import lockIcon from "../assets/Lock.svg";
+import lockIcon from "../assets/Lock-locked.png";
 import { StampDisplay } from "./StampDisplay";
 import type { Door } from "../types";
 
