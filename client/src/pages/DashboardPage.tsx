@@ -1,15 +1,45 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { DoorCard } from "../components/DoorCard";
+import { DoorUnlockModal } from "../components/DoorUnlockModal.tsx";
 import { doors } from "../data/doors";
-import "./DashBoardPage.css"
+import { validateTransferCode } from "../services/CentralbankApi";
+import "./DashBoardPage.css";
 
 export function DashboardPage() {
   const [selectedDoor, setSelectedDoor] = useState<number | null>(null);
+  const [transferCode, setTransferCode] = useState("");
+  const [validationMessage, setValidationMessage] = useState("");
 
   const handleDoorClick = (doorId: number) => {
     setSelectedDoor(doorId);
+    setTransferCode("");
+    setValidationMessage("");
 
     console.log("Selected door:", doorId);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedDoor(null);
+    setTransferCode("");
+    setValidationMessage("");
+  };
+
+  const handleSubmitTransferCode = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (selectedDoor === null) {
+      return;
+    }
+
+    const door = doors.find((item) => item.id === selectedDoor);
+
+    if (!door) {
+      setValidationMessage("We could not find the selected door.");
+      return;
+    }
+
+    const result = await validateTransferCode(transferCode, door.cost);
+    setValidationMessage(result.message);
   };
 
   return (
@@ -40,8 +70,15 @@ export function DashboardPage() {
         ))}
       </section>
 
-      {selectedDoor && (
-        <p>Selected door: {selectedDoor}</p>
+      {selectedDoor !== null && (
+        <DoorUnlockModal
+          door={doors.find((door) => door.id === selectedDoor) ?? doors[0]}
+          transferCode={transferCode}
+          validationMessage={validationMessage}
+          onClose={handleCloseModal}
+          onSubmit={handleSubmitTransferCode}
+          onTransferCodeChange={setTransferCode}
+        />
       )}
     </main>
   );
