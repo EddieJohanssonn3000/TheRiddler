@@ -18,8 +18,8 @@ function StartCodeForm() {
     // Temporary mock until Centralbank API is ready
     setMessage("Code accepted. Welcome to The Riddler!");
 
-    // Redirect to dashboard after successful code verification
-    navigate("/dashboard");
+    // Redirect to lobby after successful code verification
+    navigate("/lobby");
   }
 
   return (

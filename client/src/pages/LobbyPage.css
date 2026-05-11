@@ -1,0 +1,117 @@
+body {
+  background: var(--bg-gradient);
+}
+
+.dashboard-lobby {
+  width: 100%;
+  min-height: calc(100svh - 5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.dashboard-lobby__content {
+  width: min(100%, 1400px);
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(320px, 0.95fr);
+  align-items: center;
+  gap: 3rem;
+}
+
+.dashboard-lobby__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  color: var(--Secondary);
+  max-width: 560px;
+}
+
+.dashboard-lobby__info h1 {
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  font-weight: 400;
+  margin: 0;
+}
+
+.dashboard-lobby__info p {
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.dashboard-lobby__door {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-lobby__door-image {
+  width: auto;
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  display: block;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+.dashboard-lobby__door-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--Secondary);
+  font-size: clamp(1.1rem, 2vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+  text-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 0 18px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.dashboard-lobby__door:hover .dashboard-lobby__door-image,
+.dashboard-lobby__door:focus-visible .dashboard-lobby__door-image {
+  transform: scale(1.01);
+  filter: drop-shadow(0 18px 35px rgba(0, 0, 0, 0.35));
+}
+
+.dashboard-lobby__door:hover .dashboard-lobby__door-text,
+.dashboard-lobby__door:focus-visible .dashboard-lobby__door-text {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.dashboard-lobby__door:focus-visible {
+  outline: 2px solid var(--Secondary);
+  outline-offset: 8px;
+}
+
+@media (max-width: 1023px) {
+  .dashboard-lobby__content {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-lobby__info {
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .dashboard-lobby__door-image {
+    max-height: 60vh;
+  }
+}

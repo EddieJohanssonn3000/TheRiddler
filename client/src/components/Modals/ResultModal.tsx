@@ -26,7 +26,7 @@ function ResultModal({
   }
 
   const handleBackToDoors = () => {
-    navigate("/dashboard", {
+    navigate("/escaperoom", {
       state: isCorrect ? { solvedDifficulty } : undefined,
     });
   };

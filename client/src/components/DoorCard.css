@@ -1,99 +1,94 @@
 .door-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
-    max-width: 320px;
-  }
-  
-  .door-label {
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    background: #1d1033;
-    border: 2px solid gold;
-    color: gold;
-    font-weight: bold;
-    width: 10rem;
-  }
-  .door-label h2 {
-    display: flex;
-    justify-content: center;
-    font-size: 1rem;
-  }
-  
-  .door-image-wrapper {
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    aspect-ratio: 3 / 4;
-    border-top-right-radius: 2rem;
-    border-top-left-radius: 2rem;
-    border: solid 3px var(--gold)
-  }
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
 
-  .door-image-wrapper--unlocked {
-    filter:
-      drop-shadow(0 0 6px rgba(255, 255, 235, 0.95))
-      drop-shadow(0 0 14px rgba(255, 215, 0, 0.95))
-      drop-shadow(0 0 30px rgba(255, 215, 0, 0.6));
-    border-top-right-radius: 2rem;
-    border-top-left-radius: 2rem;
-  }
-  
-  .door-image {
-    width: 100%;
-    display: block;
-    
-  }
+.door-label {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: #1d1033;
+  border: 2px solid gold;
+  color: gold;
+  font-weight: bold;
+  width: 10rem;
+}
+.door-label h2 {
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+}
 
-  .door-lock-ring {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(circle, rgba(255, 0, 0, 0.8) 0%, rgba(255, 0, 0, 0.3) 70%, transparent 100%);
-    border-radius: 50%;
-    box-shadow: 0 0 40px rgba(255, 0, 0, 0.8), inset 0 0 30px rgba(255, 0, 0, 0.5);
-    z-index: 1;
-  }
+.door-image-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  border-top-right-radius: 2rem;
+  border-top-left-radius: 2rem;
+  border: solid 3px var(--gold);
+}
 
-  .door-lock {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90px;
-    height: 150px;
-    object-fit: contain;
-    z-index: 2;
-  }
-  
-  .door-button {
-    width: 180px;
-    padding: 1rem;
-    background: #c1272d;
-    border: none;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    border: 2px solid var(--Secondary)
-  }
+.door-image-wrapper--unlocked {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 235, 0.95))
+    drop-shadow(0 0 14px rgba(255, 215, 0, 0.95))
+    drop-shadow(0 0 30px rgba(255, 215, 0, 0.6));
+  border-top-right-radius: 2rem;
+  border-top-left-radius: 2rem;
+}
 
-  .door-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5rem; 
-    width: 100%;
-  }
-  
+.door-image {
+  width: 100%;
+  display: block;
+}
+
+.door-lock-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 0, 0, 0.8) 0%,
+    rgba(255, 0, 0, 0.3) 70%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  box-shadow:
+    0 0 40px rgba(255, 0, 0, 0.8),
+    inset 0 0 30px rgba(255, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.door-lock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+  height: 150px;
+  object-fit: contain;
+  z-index: 2;
+}
+
+.door-button {
+  width: 180px;
+  padding: 1rem;
+  background: #c1272d;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid var(--Secondary);
+}

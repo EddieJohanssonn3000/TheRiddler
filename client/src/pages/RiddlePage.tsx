@@ -40,7 +40,7 @@ function RiddlePage() {
   }, [currentRiddle?.id]);
 
   if (!currentRiddle) {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/escaperoom" replace />;
   }
 
   const handleHintValidation = async (transferCode: string) => {

@@ -10,7 +10,8 @@ type Props = {
 function Layout({ children }: Props) {
   const location = useLocation();
   const showFooter =
-    location.pathname !== "/" && !location.pathname.startsWith("/riddle");
+    location.pathname.startsWith("/escaperoom") ||
+    location.pathname.startsWith("/lobby");
 
   return (
     <div className="layout-wrapper">
