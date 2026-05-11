@@ -9,6 +9,7 @@ type Props = {
 
 function Layout({ children }: Props) {
   const location = useLocation();
+  const showHeader = location.pathname !== "/";
   const showFooter =
     location.pathname.startsWith("/escaperoom") ||
     location.pathname.startsWith("/lobby");
