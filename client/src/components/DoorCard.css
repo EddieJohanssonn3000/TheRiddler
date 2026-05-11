@@ -32,6 +32,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem;
+    border: solid 3px var(--gold);
+  }
+
+  .door-image-wrapper--unlocked {
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.95)) drop-shadow(0 0 18px rgba(255, 215, 0, 0.45));
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem;
   }
   
   .door-image {
@@ -57,7 +68,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50px;
+    width: 90px;
     height: 150px;
     object-fit: contain;
     z-index: 2;
