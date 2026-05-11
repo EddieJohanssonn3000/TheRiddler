@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "../../styles/goldenCard.css";
 import "./ResultModal.css";
+import stampGold from "../../assets/stamp-gold.png";
 
 type ResultModalProps = {
   isOpen: boolean;
@@ -59,6 +60,14 @@ function ResultModal({
 
         <div className="result-modal__content">
           <p className="result-modal__message">{message}</p>
+          <div className="result-modal__stamp-container">
+            <img
+              src={stampGold}
+              alt="stamp"
+              className="result-modal__stamp-image"
+            />
+            <p className="result-modal__stamp">You have collected a stamp</p>
+          </div>
           {correctAnswer && (
             <p className="result-modal__answer">
               <strong>Correct answer:</strong> {correctAnswer}
