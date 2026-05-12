@@ -10,6 +10,8 @@ import { Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import { saveIdentityTokenFromUrl } from "./utils/identityToken.ts";
 
+// Tillfälligt så spelet resetar varje gång vi resetar sidan 
+
 function App() {
   useEffect(() => {
     if (import.meta.env.DEV) {
