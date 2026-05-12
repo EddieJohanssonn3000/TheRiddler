@@ -19,7 +19,7 @@ function LobbyPage() {
           <h1>Welcome, {playerName ?? "player"}</h1>
 
           <p>
-            Welcome to The Escaperoom. Behind every door hides a unique riddle
+            Behind every door hides a unique riddle
             that must be solved in order to escape. Each door has its own
             entrance fee, and every unlocked door rewards you with a collectible
             stamp.

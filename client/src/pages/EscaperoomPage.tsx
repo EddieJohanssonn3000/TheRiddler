@@ -94,7 +94,7 @@ function EscaperoomPage() {
   };
 
   return (
-    <main>
+    <main className="escaperoom-page">
       <section className="door-grid">
         {doors.map((door) => (
           <DoorCard

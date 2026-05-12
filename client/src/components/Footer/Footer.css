@@ -6,6 +6,10 @@
   margin-top: 2rem;
 }
 
+.layout-wrapper > .app-footer {
+  margin-top: auto;
+}
+
 .app-footer__link {
   color: var(--Secondary);
   text-decoration: none;
