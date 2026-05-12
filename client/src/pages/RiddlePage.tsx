@@ -10,9 +10,11 @@ import "./RiddlePage.css";
 
 function RiddlePage() {
   const { difficulty } = useParams();
+
   const currentRiddle = riddles.find(
     (riddle) => riddle.difficulty === difficulty,
   );
+
   const [answer, setAnswer] = useState("");
   const [isHintModalOpen, setIsHintModalOpen] = useState(false);
   const [isHintRevealed, setIsHintRevealed] = useState(false);
@@ -43,7 +45,9 @@ function RiddlePage() {
     return <Navigate to="/escaperoom" replace />;
   }
 
-  const handleHintValidation = async (transferCode: string) => {
+  const handleHintValidation = async (
+    transferCode: string,
+  ): Promise<boolean> => {
     const isValid = transferCode.trim().length > 0;
 
     if (isValid) {
@@ -54,10 +58,9 @@ function RiddlePage() {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
 
-    // Normalisera svaret (gemener, trim whitespace)
     const normalizedAnswer = answer.toLowerCase().trim();
     const normalizedCorrect = currentRiddle.answer.toLowerCase().trim();
 
@@ -67,7 +70,9 @@ function RiddlePage() {
         message: "Well done! You've solved the riddle!",
         solvedDifficulty: currentRiddle.difficulty,
       });
+
       setIsResultModalOpen(true);
+
       setFeedback({
         message: "Correct! Well done!",
         type: "success",
@@ -82,9 +87,11 @@ function RiddlePage() {
           message: "Game Over! You've run out of attempts.",
           correctAnswer: currentRiddle.answer,
         });
+
         setIsResultModalOpen(true);
+
         setFeedback({
-          message: `Game Over! The Correct answer is ${currentRiddle.answer}`,
+          message: `Game Over! The correct answer is ${currentRiddle.answer}`,
           type: "error",
         });
       } else {
@@ -111,6 +118,7 @@ function RiddlePage() {
             />
           ))}
         </div>
+
         <p className="riddle-page__attempts-text">
           {attempts} attempt{attempts !== 1 ? "s" : ""} remaining
         </p>
@@ -119,6 +127,7 @@ function RiddlePage() {
       <section className="riddle-card">
         <span className="riddle-card__tape riddle-card__tape--left" />
         <span className="riddle-card__tape riddle-card__tape--right" />
+
         <p className="riddle-card__question">{currentRiddle.question}</p>
 
         <form className="riddle-card__form" onSubmit={handleSubmit}>
@@ -128,9 +137,10 @@ function RiddlePage() {
             className="app-input riddle-card__input"
             placeholder="Enter your answer..."
             value={answer}
-            onChange={(e) => setAnswer(e.target.value)}
+            onChange={(event) => setAnswer(event.target.value)}
             disabled={attempts <= 0}
           />
+
           <button
             type="submit"
             className="app-btn app-btn--red"

@@ -3,13 +3,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { DoorCard } from "../components/DoorCard";
 import { DoorUnlockModal } from "../components/Modals";
 import { doors } from "../data/doors";
-import { validateTransferCode } from "../services/CentralbankApi";
+import { createTransaction } from "../services/CentralbankApi";
+import { getIdentityToken } from "../utils/identityToken";
 import type { Difficulty } from "../types";
 import "./EscaperoomPage.css";
 
 function EscaperoomPage() {
   const [selectedDoor, setSelectedDoor] = useState<number | null>(null);
-  const [transferCode, setTransferCode] = useState("");
   const [validationMessage, setValidationMessage] = useState("");
   const [unlockedDifficulties, setUnlockedDifficulties] = useState<
     Difficulty[]
@@ -17,6 +17,7 @@ function EscaperoomPage() {
     const stored = window.sessionStorage.getItem("unlockedDifficulties");
     return stored ? JSON.parse(stored) : [];
   });
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -44,21 +45,19 @@ function EscaperoomPage() {
     });
   }, [location.state]);
 
-  const handleDoorClick = (doorId: number) => {
+  const handleDoorClick = (doorId: number): void => {
     setSelectedDoor(doorId);
-    setTransferCode("");
     setValidationMessage("");
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = (): void => {
     setSelectedDoor(null);
-    setTransferCode("");
     setValidationMessage("");
   };
 
-  const handleSubmitTransferCode = async (
+  const handleSubmitPayment = async (
     event: FormEvent<HTMLFormElement>,
-  ) => {
+  ): Promise<void> => {
     event.preventDefault();
 
     if (selectedDoor === null) {
@@ -72,13 +71,25 @@ function EscaperoomPage() {
       return;
     }
 
-    const result = await validateTransferCode(transferCode, door.cost);
-    setValidationMessage(result.message);
+    const identityToken = getIdentityToken();
 
-    if (result.ok) {
+    if (!identityToken) {
+      setValidationMessage("No session found. Please return to Tivoli.");
+      return;
+    }
+
+    try {
+      const transaction = await createTransaction(identityToken, door.cost);
+
+      window.sessionStorage.setItem("transactionId", transaction.id);
+      window.sessionStorage.setItem("stamp", transaction.stamp);
+
       setSelectedDoor(null);
-      setTransferCode("");
+      setValidationMessage("");
+
       navigate(`/riddle/${door.difficulty}`);
+    } catch (error) {
+      setValidationMessage("Payment failed. Please return to Tivoli.");
     }
   };
 
@@ -98,11 +109,9 @@ function EscaperoomPage() {
       {selectedDoor !== null && (
         <DoorUnlockModal
           door={doors.find((door) => door.id === selectedDoor) ?? doors[0]}
-          transferCode={transferCode}
           validationMessage={validationMessage}
           onClose={handleCloseModal}
-          onSubmit={handleSubmitTransferCode}
-          onTransferCodeChange={setTransferCode}
+          onSubmit={handleSubmitPayment}
         />
       )}
     </main>

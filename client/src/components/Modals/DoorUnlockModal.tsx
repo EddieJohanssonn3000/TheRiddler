@@ -5,20 +5,16 @@ import "./DoorUnlockModal.css";
 
 type DoorUnlockModalProps = {
   door: Door;
-  transferCode: string;
   validationMessage: string;
   onClose: () => void;
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
-  onTransferCodeChange: (value: string) => void;
 };
 
 export function DoorUnlockModal({
   door,
-  transferCode,
   validationMessage,
   onClose,
   onSubmit,
-  onTransferCodeChange,
 }: DoorUnlockModalProps) {
   return (
     <div
@@ -53,33 +49,20 @@ export function DoorUnlockModal({
 
         <div className="door-unlock-modal__header">
           <h2 id="door-unlock-modal-title" className="golden-card__title">
-            Validate your key
+            Unlock this gate
           </h2>
+
           <p
             id="door-unlock-modal-description"
             className="door-unlock-modal__description"
           >
-            {door.difficulty.toUpperCase()} gate, {door.cost}€ transfer needed.
+            {door.difficulty.toUpperCase()} gate costs {door.cost}€.
           </p>
         </div>
 
         <form className="door-unlock-modal__form" onSubmit={onSubmit}>
-          <label className="door-unlock-modal__label" htmlFor="transfer-code">
-            Transfercode?
-          </label>
-
-          <input
-            className="door-unlock-modal__input"
-            id="transfer-code"
-            name="transferCode"
-            type="text"
-            value={transferCode}
-            placeholder="ex. HTTLCI-449fvid3s"
-            onChange={(event) => onTransferCodeChange(event.target.value)}
-          />
-
           <button className="door-unlock-modal__button" type="submit">
-            Submit
+            Pay {door.cost}€
           </button>
 
           {validationMessage && (

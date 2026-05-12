@@ -1,25 +1,63 @@
-export async function validateTransferCode(
-	transferCode: string,
-	amount: number,
-): Promise<{ ok: boolean; message: string }> {
-	const normalizedCode = transferCode.trim();
+export interface ApiError {
+  message: string;
+  status?: number;
+}
 
-	if (normalizedCode.length < 8) {
-		return {
-			ok: false,
-			message: "Enter a longer transfer code to validate your key.",
-		};
-	}
+export interface TransactionResponse {
+  id: string;
+  stamp: string;
+}
 
-	if (!/^[a-z0-9-]+$/i.test(normalizedCode)) {
-		return {
-			ok: false,
-			message: "The code can only contain letters, numbers, and dashes.",
-		};
-	}
+const API_BASE_URL = import.meta.env.VITE_CENTRALBANK_API_URL;
+const API_KEY = import.meta.env.VITE_CENTRALBANK_API_KEY;
+const AMUSEMENT_UUID = import.meta.env.VITE_AMUSEMENT_UUID;
 
-	return {
-		ok: true,
-		message: `Key accepted. You can unlock the ${amount}€ door.`,
-	};
+async function request<T>(
+  endpoint: string,
+  options: RequestInit = {},
+): Promise<T> {
+  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      "X-Api-Key": API_KEY,
+      ...options.headers,
+    },
+  });
+
+  if (!response.ok) {
+    throw {
+      message:
+        response.status === 401
+          ? "Your session has expired. Please return to Tivoli."
+          : "Centralbank request failed.",
+      status: response.status,
+    } satisfies ApiError;
+  }
+
+  return response.json() as Promise<T>;
+}
+
+export async function createTransaction(
+  identityToken: string,
+  amount: number,
+): Promise<TransactionResponse> {
+  console.log("Mock transaction", { identityToken, amount });
+
+  return {
+    id: crypto.randomUUID(),
+    stamp: "gold lion",
+  };
+}
+
+export async function createPayout(
+  transactionId: string,
+  amount: number,
+): Promise<void> {
+  await request(`/transactions/${transactionId}/payout`, {
+    method: "POST",
+    body: JSON.stringify({
+      amount,
+    }),
+  });
 }

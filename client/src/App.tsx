@@ -7,7 +7,20 @@ import EscaperoomPage from "./pages/EscaperoomPage.tsx";
 import RiddlePage from "./pages/RiddlePage";
 import { Route, Routes } from "react-router-dom";
 
+import { useEffect } from "react";
+import { saveIdentityTokenFromUrl } from "./utils/identityToken.ts";
+
 function App() {
+  useEffect(() => {
+    if (import.meta.env.DEV) {
+      window.sessionStorage.removeItem("unlockedDifficulties");
+      window.sessionStorage.removeItem("transactionId");
+      window.sessionStorage.removeItem("stamp");
+    }
+
+    saveIdentityTokenFromUrl();
+  }, []);
+
   return (
     <Layout>
       <Routes>
