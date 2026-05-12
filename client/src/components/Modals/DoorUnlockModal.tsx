@@ -52,7 +52,6 @@ export function DoorUnlockModal({
         />
 
         <div className="door-unlock-modal__header">
-          <p className="door-unlock-modal__eyebrow">POPUP MODAL</p>
           <h2 id="door-unlock-modal-title" className="golden-card__title">
             Validate your key
           </h2>

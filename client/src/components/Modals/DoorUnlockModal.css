@@ -26,13 +26,7 @@
   text-align: center;
 }
 
-.door-unlock-modal__eyebrow {
-  margin: 0;
-  color: var(--Secondary);
-  font-size: 1rem;
-  letter-spacing: 0.08em;
-  opacity: 0.95;
-}
+
 
 .door-unlock-modal .golden-card__title {
   font-size: 1.6rem;

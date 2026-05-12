@@ -9,7 +9,7 @@ export default function LoadingPage() {
   useEffect(() => {
     const t = setTimeout(() => {
       navigate("/home", { replace: true });
-    }, 2000);
+    }, 20000);
     return () => clearTimeout(t);
   }, [navigate]);
 
