@@ -38,6 +38,7 @@ async function request<T>(
   return response.json() as Promise<T>;
 }
 
+// TEST-DATA FÖR ATT SKAPA EN TILLFÄLLIG MOCKLÖSNING. I SLUTVERSION SKA VI GÖRA ETT RIKTIGT FETCH ANROP TILL CENTRALBANKNE
 export async function createTransaction(
   identityToken: string,
   amount: number,
