@@ -25,12 +25,15 @@ body {
   gap: 1.25rem;
   color: var(--Secondary);
   max-width: 560px;
+  text-align: center;
+  justify-self: center;
 }
 
 .dashboard-lobby__info h1 {
   font-size: clamp(2.2rem, 4vw, 4rem);
   font-weight: 400;
   margin: 0;
+  font-style: italic;
 }
 
 .dashboard-lobby__info p {
@@ -38,6 +41,22 @@ body {
   font-style: italic;
   line-height: 1.7;
   margin: 0;
+}
+
+.dashboard-lobby__keys {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.dashboard-lobby__key {
+  width: 2.6rem;
+  height: 2.6rem;
+  object-fit: contain;
+  display: block;
+  transform: rotate(-14deg);
 }
 
 .dashboard-lobby__door {

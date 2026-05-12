@@ -1,4 +1,4 @@
-import StartCodeForm from "../components/StartCodeForm";
+import PlayerNameForm from "../components/PlayerNameForm";
 // import { Link } from "react-router-dom";
 import "../styles/goldenCard.css";
 
@@ -22,7 +22,7 @@ function HomePage() {
         aria-hidden="true"
       />
       <h1 className="golden-card__title">Step in to the Riddlers Escaperoom</h1>
-      <StartCodeForm />
+      <PlayerNameForm />
     </section>
   );
 }

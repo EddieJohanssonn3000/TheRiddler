@@ -1,0 +1,41 @@
+.player-name-form {
+  width: min(100%, 26rem);
+  margin-top: 1.75rem;
+}
+
+.player-name-form__content {
+  display: grid;
+  gap: 1.15rem;
+  justify-items: center;
+  width: 100%;
+}
+
+.player-name-form__label {
+  color: var(--Secondary);
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.player-name-form__input {
+  width: 100%;
+  min-height: 3.3rem;
+  border: 3px solid var(--Tertiary);
+  background: #f6e7ff;
+  color: var(--text-neutral);
+  box-shadow: none;
+}
+
+.player-name-form__input:focus {
+  border-color: var(--Tertiary);
+}
+
+.player-name-form__button {
+  width: 100%;
+  min-height: 3.4rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
