@@ -10,7 +10,7 @@ export interface TransactionResponse {
 
 const API_BASE_URL = import.meta.env.VITE_CENTRALBANK_API_URL;
 const API_KEY = import.meta.env.VITE_CENTRALBANK_API_KEY;
-const AMUSEMENT_UUID = import.meta.env.VITE_AMUSEMENT_UUID;
+// const AMUSEMENT_UUID = import.meta.env.VITE_AMUSEMENT_UUID;
 
 async function request<T>(
   endpoint: string,
