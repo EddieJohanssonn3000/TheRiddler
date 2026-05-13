@@ -2,7 +2,7 @@
 .golden-card {
   position: relative;
   display: grid;
-  gap: 3rem;
+  gap: 2rem;
   place-content: center;
   width: 100%;
   padding: 3rem;
