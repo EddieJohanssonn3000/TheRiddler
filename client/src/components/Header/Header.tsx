@@ -1,5 +1,5 @@
 import "./Header.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import theRiddlerLogo from "../../assets/TheRiddlerFontLogo.png";
 
 function getHeaderLabel(pathname: string): string {
@@ -20,38 +20,25 @@ function getHeaderLabel(pathname: string): string {
 
 function Header() {
   const location = useLocation();
-  const navigate = useNavigate();
   const playerName = window.sessionStorage.getItem("playerName");
   const headerLabel = getHeaderLabel(location.pathname);
   const isEscaperoom = location.pathname.startsWith("/escaperoom");
 
-  const handleLogoClick = () => {
-    navigate("/lobby");
-  };
-
   return (
     <header className={`app-header ${isEscaperoom ? "app-header--escaperoom" : ""}`}>
-      <button 
-        className="app-header__brand" 
-        onClick={handleLogoClick}
-        type="button"
-        aria-label="Go to lobby"
-      >
+      <div className="app-header__brand">
         <img src={theRiddlerLogo} alt="The Riddler" className="app-header__logo" />
-      </button>
+      </div>
 
       <div className="app-header__meta" aria-label="Current player">
         <div className="app-header__meta-top">
-          {playerName ? (
-            <>
-              <span className="app-header__meta-label">Player:</span>
-              <span className="app-header__meta-value">{playerName}</span>
-            </>
-          ) : null}
+          <span className="app-header__meta-label">Player:</span>
+          <span className="app-header__meta-value">{playerName ?? ""}</span>
         </div>
 
         <div className="app-header__room" aria-label="Current room">
-          Location: {headerLabel}
+          <span className="app-header__room-label">Location:</span>
+          <span className="app-header__room-value">{headerLabel}</span>
         </div>
       </div>
     </header>

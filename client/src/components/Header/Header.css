@@ -44,8 +44,17 @@
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
+}
+
+.app-header__room-label {
+  font-weight: 400;
   opacity: 0.85;
+}
+
+.app-header__room-value {
   color: rgba(255, 215, 0, 0.95);
+  font-weight: 600;
+  margin-left: 0.45rem;
 }
 
 .app-header__meta {
@@ -66,14 +75,19 @@
   gap: 0.45rem;
 }
 
-.app-header__meta-label {
-  opacity: 0.7;
-  font-size: 0.75rem;
+/* Make the Player display match the sizing and emphasis of Location */
+.app-header__meta-top {
+  font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
+}
+
+.app-header__meta-label {
+  opacity: 0.85;
 }
 
 .app-header__meta-value {
+  color: rgba(255, 215, 0, 0.95);
   font-weight: 600;
 }
 
