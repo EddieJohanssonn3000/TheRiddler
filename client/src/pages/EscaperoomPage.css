@@ -5,29 +5,18 @@
   width: 100%;
   flex: 1;
   padding: 2rem 1.5rem 3rem;
-  background-color: var(--primary-darkPurple);
-  background-attachment: fixed;
+  background: transparent;
+  min-height: 100svh;
 }
 
 @media (min-width: 769px) {
   .escaperoom-page {
     background-image:
-      linear-gradient(rgba(49, 0, 73, 0.18), rgba(49, 0, 73, 0.18)),
       url("../assets/purple-room2.png");
     background-position: center 35%;
     background-size: cover;
     background-repeat: no-repeat;
-  }
-}
-
-@media (max-width: 768px) {
-  .escaperoom-page {
-    background-image:
-      linear-gradient(rgba(49, 0, 73, 0.18), rgba(49, 0, 73, 0.18)),
-      url("../assets/purple-curtain.png");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 }
 
@@ -35,7 +24,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-  padding: 3rem 0 0;
   width: 100%;
   margin-top: 50px;
   margin-bottom: 2rem;
