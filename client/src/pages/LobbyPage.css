@@ -136,6 +136,10 @@
   animation: doorFadeOut 0.5s ease-out 1.7s forwards;
 }
 
+.dashboard-lobby__door--zooming .dashboard-lobby__door-text {
+  display: none;
+}
+
 @keyframes doorZoomIn {
   from {
     transform: scale(0.5);
