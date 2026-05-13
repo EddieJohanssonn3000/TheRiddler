@@ -7,6 +7,13 @@
   width: 100%;
 }
 
+@media (min-width: 769px) {
+  .door-card {
+    max-width: 280px;
+    justify-self: center;
+  }
+}
+
 .door-label {
   position: absolute;
   top: -25px;
@@ -91,4 +98,15 @@
   font-weight: bold;
   cursor: pointer;
   border: 2px solid var(--Secondary);
+  transition: all 0.3s ease;
+}
+
+.door-card:has(.door-image-wrapper--unlocked) .door-button {
+  background: transparent;
+  color: var(--Secondary);
+}
+
+.door-card:has(.door-image-wrapper--unlocked) .door-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(255, 215, 0, 0.3);
 }

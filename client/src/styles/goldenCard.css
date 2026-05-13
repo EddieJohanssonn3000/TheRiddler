@@ -5,10 +5,11 @@
   gap: 3rem;
   place-content: center;
   width: 100%;
+  max-width: 500px;
   padding: 3rem;
   justify-items: center;
   border: solid 4px var(--gold);
-  margin: 40px 40px;
+  margin: 40px auto;
   background: var(--primary-darkPurple);
 }
 
@@ -62,4 +63,13 @@
   right: 1.5rem;
   bottom: 1.5rem;
   border-width: 0 4px 4px 0;
+}
+
+@media (max-width: 768px) {
+  .golden-card {
+    max-width: 280px;
+    padding: 1.5rem;
+    gap: 1.5rem;
+    margin: 20px auto;
+  }
 }

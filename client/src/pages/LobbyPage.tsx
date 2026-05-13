@@ -1,15 +1,20 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import keyGold from "../assets/keygold.png";
 import lobbyDoor from "../assets/NewDoor.png";
 import "./LobbyPage.css";
 
 function LobbyPage() {
   const navigate = useNavigate();
+  const [isZoomingIn, setIsZoomingIn] = useState(false);
 
   const playerName = window.sessionStorage.getItem("playerName");
 
   const handleEnterEscaperoom = (): void => {
-    navigate("/escaperoom");
+    setIsZoomingIn(true);
+    setTimeout(() => {
+      navigate("/escaperoom");
+    }, 2000);
   };
 
   return (
@@ -19,10 +24,9 @@ function LobbyPage() {
           <h1>Welcome, {playerName ?? "player"}</h1>
 
           <p>
-            Behind every door hides a unique riddle
-            that must be solved in order to escape. Each door has its own
-            entrance fee, and every unlocked door rewards you with a collectible
-            stamp.
+            Behind every door hides a unique riddle that must be solved in order
+            to escape. Each door has its own entrance fee, and every unlocked
+            door rewards you with a collectible stamp.
           </p>
 
           <p>
@@ -50,7 +54,7 @@ function LobbyPage() {
 
         <button
           type="button"
-          className="dashboard-lobby__door"
+          className={`dashboard-lobby__door ${isZoomingIn ? "dashboard-lobby__door--zooming" : ""}`}
           onClick={handleEnterEscaperoom}
           aria-label="Enter The Escaperoom"
         >

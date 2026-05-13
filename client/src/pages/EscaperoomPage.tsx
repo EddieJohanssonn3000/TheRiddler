@@ -46,6 +46,13 @@ function EscaperoomPage() {
   }, [location.state]);
 
   const handleDoorClick = (doorId: number): void => {
+    const door = doors.find((item) => item.id === doorId);
+
+    if (door && unlockedDifficulties.includes(door.difficulty)) {
+      navigate("/");
+      return;
+    }
+
     setSelectedDoor(doorId);
     setValidationMessage("");
   };

@@ -1,5 +1,6 @@
 :root {
   --color-offwhite: #fdebff;
+  --neutral: #fdebff;
   --text-neutral: #1a1423;
   --primary: #6b2d8c;
   --primary-darkPurple: #310049;
@@ -20,6 +21,10 @@
 body {
   margin: 0;
   font-family: "Bricolage Grotesque", sans-serif;
+  background:
+    linear-gradient(rgba(49, 0, 73, 0.28), rgba(49, 0, 73, 0.28)),
+    url("./assets/purple-curtain.png") center center / cover no-repeat fixed;
+  background-color: var(--primary-darkPurple);
 }
 
 .app-btn {

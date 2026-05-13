@@ -195,7 +195,6 @@ function RiddlePage() {
           <p className="riddle-page__hint-text">{currentRiddle.hint}</p>
         </div>
       </section>
-
       <Footer />
     </div>
   );

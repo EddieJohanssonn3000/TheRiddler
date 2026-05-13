@@ -1,7 +1,3 @@
-body {
-  background: var(--bg-gradient);
-}
-
 .dashboard-lobby {
   width: 100%;
   min-height: calc(100svh - 5rem);
@@ -9,6 +5,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 2rem 1.5rem 3rem;
+  position: relative;
 }
 
 .dashboard-lobby__content {
@@ -73,7 +70,7 @@ body {
 .dashboard-lobby__door-image {
   width: auto;
   max-width: 100%;
-  max-height: 90vh;
+  max-height: 70vh;
   object-fit: contain;
   display: block;
   transition:
@@ -120,6 +117,45 @@ body {
   outline-offset: 8px;
 }
 
+.dashboard-lobby__door--zooming {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  background: var(--primary-darkPurple);
+  animation: doorZoomIn 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.dashboard-lobby__door--zooming .dashboard-lobby__door-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-height: none;
+  max-width: none;
+  animation: doorFadeOut 0.5s ease-out 1.7s forwards;
+}
+
+@keyframes doorZoomIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes doorFadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
 @media (max-width: 1023px) {
   .dashboard-lobby__content {
     grid-template-columns: 1fr;
@@ -131,6 +167,6 @@ body {
   }
 
   .dashboard-lobby__door-image {
-    max-height: 60vh;
+    max-height: 70vh;
   }
 }

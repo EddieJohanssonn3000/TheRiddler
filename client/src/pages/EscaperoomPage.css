@@ -1,29 +1,50 @@
-body {
-  background: var(--bg-gradient);
-}
-
 .escaperoom-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  min-height: 100%;
+  flex: 1;
   padding: 2rem 1.5rem 3rem;
+  background-color: var(--primary-darkPurple);
+  background-attachment: fixed;
+}
+
+@media (min-width: 769px) {
+  .escaperoom-page {
+    background-image:
+      linear-gradient(rgba(49, 0, 73, 0.18), rgba(49, 0, 73, 0.18)),
+      url("../assets/purple-room2.png");
+    background-position: center 35%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+@media (max-width: 768px) {
+  .escaperoom-page {
+    background-image:
+      linear-gradient(rgba(49, 0, 73, 0.18), rgba(49, 0, 73, 0.18)),
+      url("../assets/purple-curtain.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 }
 
 .door-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 5rem;
-  padding: 2rem 0 0;
+  gap: 1rem;
+  padding: 3rem 0 0;
   width: 100%;
-  margin-top: 30px;
+  margin-top: 50px;
   margin-bottom: 2rem;
 }
 
 @media (max-width: 1024px) {
   .door-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
   }
 }
 
