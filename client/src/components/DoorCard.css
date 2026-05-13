@@ -32,6 +32,15 @@
   font-size: 1rem;
 }
 
+.door-card .stamp-display {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 11;
+  width: 100%;
+}
+
 .door-image-wrapper {
   position: relative;
   width: 100%;
