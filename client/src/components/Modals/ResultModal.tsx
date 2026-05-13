@@ -60,11 +60,15 @@ function ResultModal({
             isCorrect ? "success" : "error"
           }`}
         >
-          {isCorrect ? "Correct!" : "Incorrect"}
+          {isCorrect ? "YOU SOLVED THE RIDDLE" : "Incorrect"}
         </h2>
 
         <div className="result-modal__content">
-          <p className="result-modal__message">{message}</p>
+          <p className="result-modal__message">
+            {isCorrect
+              ? "The door is now unlocked. Continue to open the rest of the doors or escape the game."
+              : message}
+          </p>
           <div className="result-modal__stamp-container">
             <img
               src={stampGold}
@@ -84,7 +88,7 @@ function ResultModal({
           className="app-btn app-btn--red result-modal__button"
           onClick={handleBackToDoors}
         >
-          {isCorrect ? "Leave the riddle" : "Back to Doors"}
+          Back to Doors
         </button>
       </section>
     </div>
