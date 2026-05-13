@@ -4,7 +4,7 @@ import "../styles/goldenCard.css";
 
 function HomePage() {
   return (
-    <section className="golden-card">
+    <section className="golden-card golden-card--home">
       <span
         className="golden-card__corner golden-card__corner--top-left"
         aria-hidden="true"
