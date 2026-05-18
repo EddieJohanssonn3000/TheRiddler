@@ -12,10 +12,9 @@
 
 .hint-modal__overlay .golden-card {
   position: relative;
-
-  width: min(80vw, 800px);
-  height: min(70vh, 600px);
-
+  width: min(86vw, 900px);
+  height: auto;
+  max-height: min(70vh, 600px);
   overflow-y: auto;
 }
 
@@ -50,15 +49,45 @@
 
 .hint-modal__close:hover,
 .hint-modal__close:focus {
-  background: rgba(0, 0, 0, 0.06);
+  background-color: rgba(0, 0, 0, 0.1);
   border-color: var(--Secondary);
   outline: none;
 }
 
 .hint-modal__input {
   width: 100%;
+  padding: 0.8rem 0.9rem;
+  border: 2px solid rgba(255, 215, 0, 0.55);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--Secondary);
+  font-size: 0.95rem;
 }
 
 .hint-modal__button {
-  padding: 0.95rem 1.5rem !important;
+  width: 50%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  background: var(--Primary);
+  color: var(--Secondary);
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease;
+}
+
+.hint-modal__button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.hint-modal__header,
+.hint-modal__form,
+.hint-modal__message,
+.hint-modal__label,
+.hint-modal__content {
+  color: var(--Secondary);
+  opacity: 0.95;
 }
