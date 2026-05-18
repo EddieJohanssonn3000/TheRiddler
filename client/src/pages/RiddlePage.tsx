@@ -57,20 +57,21 @@ function RiddlePage() {
   }
 
   if (!currentRiddle) {
-    return <p>Loading riddle...</p>;
+    return (
+      <main className="riddle-page__wrapper">
+        <p>Loading riddle...</p>
+      </main>
+    );
   }
 
-  const handleHintValidation = async (
-    transferCode: string,
-  ): Promise<boolean> => {
-    const isValid = transferCode.trim().length > 0;
-
-    if (isValid) {
-      setIsHintRevealed(true);
-      setIsHintModalOpen(false);
+  const handleRevealHint = (): void => {
+    if (attempts <= 1) {
+      return;
     }
 
-    return isValid;
+    setAttempts((currentAttempts) => currentAttempts - 1);
+    setIsHintRevealed(true);
+    setIsHintModalOpen(false);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -174,20 +175,21 @@ function RiddlePage() {
         )}
       </section>
 
-      {!isHintRevealed && (
+      {!isHintRevealed && attempts > 0 && (
         <button
           type="button"
           className="riddle-page__hint-trigger"
           onClick={() => setIsHintModalOpen(true)}
         >
-          Need a hint? 2€
+          Need a hint?
         </button>
       )}
 
       <HintModal
         isOpen={isHintModalOpen}
         onClose={() => setIsHintModalOpen(false)}
-        onValidate={handleHintValidation}
+        onConfirm={handleRevealHint}
+        canBuyHint={attempts > 1}
       />
 
       {resultModalData && (
