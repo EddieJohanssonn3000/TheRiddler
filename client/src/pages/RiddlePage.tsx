@@ -5,16 +5,13 @@ import keyGold from "../assets/keygold.png";
 import keyBlack from "../assets/keyblack.png";
 import { HintModal, ResultModal } from "../components/Modals";
 import Footer from "../components/Footer";
-import type { Difficulty } from "../types";
+import type { Difficulty, Riddle } from "../types";
 import "./RiddlePage.css";
 
 function RiddlePage() {
   const { difficulty } = useParams();
 
-  const currentRiddle = riddles.find(
-    (riddle) => riddle.difficulty === difficulty,
-  );
-
+  const [currentRiddle, setCurrentRiddle] = useState<Riddle | null>(null);
   const [answer, setAnswer] = useState("");
   const [isHintModalOpen, setIsHintModalOpen] = useState(false);
   const [isHintRevealed, setIsHintRevealed] = useState(false);
@@ -30,6 +27,20 @@ function RiddlePage() {
     correctAnswer?: string;
     solvedDifficulty?: Difficulty;
   } | null>(null);
+
+  useEffect(() => {
+    const matchingRiddles = riddles.filter(
+      (riddle) => riddle.difficulty === difficulty,
+    );
+
+    if (matchingRiddles.length === 0) {
+      setCurrentRiddle(null);
+      return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * matchingRiddles.length);
+    setCurrentRiddle(matchingRiddles[randomIndex]);
+  }, [difficulty]);
 
   useEffect(() => {
     setAnswer("");
@@ -195,6 +206,7 @@ function RiddlePage() {
           <p className="riddle-page__hint-text">{currentRiddle.hint}</p>
         </div>
       </section>
+
       <Footer />
     </div>
   );
