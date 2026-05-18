@@ -52,8 +52,12 @@ function RiddlePage() {
     setResultModalData(null);
   }, [currentRiddle?.id]);
 
-  if (!currentRiddle) {
+  if (!difficulty || !["easy", "medium", "hard"].includes(difficulty)) {
     return <Navigate to="/escaperoom" replace />;
+  }
+
+  if (!currentRiddle) {
+    return <p>Loading riddle...</p>;
   }
 
   const handleHintValidation = async (
