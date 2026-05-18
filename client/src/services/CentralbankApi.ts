@@ -10,6 +10,7 @@ export interface TransactionResponse {
 
 const API_BASE_URL = import.meta.env.VITE_CENTRALBANK_API_URL;
 const API_KEY = import.meta.env.VITE_CENTRALBANK_API_KEY;
+const USE_MOCK_BANK = import.meta.env.VITE_USE_MOCK_BANK === "true";
 
 async function request<T>(
   endpoint: string,
@@ -40,6 +41,18 @@ export async function createTransaction(
   identityToken: string,
   amount: number,
 ): Promise<TransactionResponse> {
+  if (USE_MOCK_BANK) {
+    console.log("Mock transaction", {
+      identityToken,
+      amount,
+    });
+
+    return {
+      id: crypto.randomUUID(),
+      stamp: "gold lion",
+    };
+  }
+
   return request<TransactionResponse>("/transactions", {
     method: "POST",
     body: JSON.stringify({
@@ -54,6 +67,15 @@ export async function createPayout(
   transactionId: string,
   amount: number,
 ): Promise<void> {
+  if (USE_MOCK_BANK) {
+    console.log("Mock payout", {
+      transactionId,
+      amount,
+    });
+
+    return;
+  }
+
   await request(`/transactions/${transactionId}/payout`, {
     method: "POST",
     body: JSON.stringify({
