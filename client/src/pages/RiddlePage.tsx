@@ -140,50 +140,49 @@ function RiddlePage() {
         </p>
       </div>
 
-      <section className="riddle-card">
-        <span className="riddle-card__tape riddle-card__tape--left" />
-        <span className="riddle-card__tape riddle-card__tape--right" />
+      <section className="riddle-scroll">
+        <div className="riddle-scroll__content">
+          <p className="riddle-card__question">{currentRiddle.question}</p>
 
-        <p className="riddle-card__question">{currentRiddle.question}</p>
+          <form className="riddle-card__form" onSubmit={handleSubmit}>
+            <input
+              id="answer"
+              type="text"
+              className="app-input riddle-card__input"
+              placeholder="Enter your answer..."
+              value={answer}
+              onChange={(event) => setAnswer(event.target.value)}
+              disabled={attempts <= 0}
+            />
 
-        <form className="riddle-card__form" onSubmit={handleSubmit}>
-          <input
-            id="answer"
-            type="text"
-            className="app-input riddle-card__input"
-            placeholder="Enter your answer..."
-            value={answer}
-            onChange={(event) => setAnswer(event.target.value)}
-            disabled={attempts <= 0}
-          />
+            <button
+              type="submit"
+              className="app-btn app-btn--red"
+              disabled={attempts <= 0}
+            >
+              Submit Answer
+            </button>
+          </form>
 
-          <button
-            type="submit"
-            className="app-btn app-btn--red"
-            disabled={attempts <= 0}
-          >
-            Submit Answer
-          </button>
-        </form>
+          {feedback && (
+            <p
+              className={`riddle-card__feedback riddle-card__feedback--${feedback.type}`}
+            >
+              {feedback.message}
+            </p>
+          )}
 
-        {feedback && (
-          <p
-            className={`riddle-card__feedback riddle-card__feedback--${feedback.type}`}
-          >
-            {feedback.message}
-          </p>
-        )}
+          {!isHintRevealed && attempts > 0 && (
+            <button
+              type="button"
+              className="riddle-page__hint-trigger"
+              onClick={() => setIsHintModalOpen(true)}
+            >
+              Need a hint?
+            </button>
+          )}
+        </div>
       </section>
-
-      {!isHintRevealed && attempts > 0 && (
-        <button
-          type="button"
-          className="riddle-page__hint-trigger"
-          onClick={() => setIsHintModalOpen(true)}
-        >
-          Need a hint?
-        </button>
-      )}
 
       <HintModal
         isOpen={isHintModalOpen}
