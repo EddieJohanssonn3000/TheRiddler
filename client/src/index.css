@@ -22,10 +22,11 @@ body {
   margin: 0;
   font-family: "Bricolage Grotesque", sans-serif;
   background:
-    linear-gradient(rgba(49, 0, 73, 0.28), rgba(49, 0, 73, 0.28)),
     url("./assets/purple-curtain.png") center center / cover no-repeat fixed;
   background-color: var(--primary-darkPurple);
+  min-height: 100svh;
 }
+
 
 .app-btn {
   display: inline-flex;

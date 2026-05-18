@@ -2,15 +2,25 @@
 .golden-card {
   position: relative;
   display: grid;
-  gap: 3rem;
+  gap: 2rem;
   place-content: center;
   width: 100%;
-  max-width: 500px;
   padding: 3rem;
   justify-items: center;
   border: solid 4px var(--gold);
   margin: 40px auto;
   background: var(--primary-darkPurple);
+}
+
+@media (min-width: 769px) {
+  .golden-card {
+    max-width: 500px;
+  }
+}
+
+.golden-card--home {
+  width: 100%;
+  margin-block: auto;
 }
 
 .golden-card__title {
@@ -67,9 +77,14 @@
 
 @media (max-width: 768px) {
   .golden-card {
-    max-width: 280px;
+    width: calc(100vw - 4rem);
     padding: 1.5rem;
     gap: 1.5rem;
     margin: 20px auto;
+  }
+
+  .golden-card--home {
+    height: 70vh;
+    margin-block: auto;
   }
 }

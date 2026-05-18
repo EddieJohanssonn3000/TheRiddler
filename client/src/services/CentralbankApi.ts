@@ -10,7 +10,6 @@ export interface TransactionResponse {
 
 const API_BASE_URL = import.meta.env.VITE_CENTRALBANK_API_URL;
 const API_KEY = import.meta.env.VITE_CENTRALBANK_API_KEY;
-// const AMUSEMENT_UUID = import.meta.env.VITE_AMUSEMENT_UUID;
 
 async function request<T>(
   endpoint: string,
@@ -20,7 +19,6 @@ async function request<T>(
     ...options,
     headers: {
       "Content-Type": "application/json",
-      "X-Api-Key": API_KEY,
       ...options.headers,
     },
   });
@@ -38,17 +36,18 @@ async function request<T>(
   return response.json() as Promise<T>;
 }
 
-// TEST-DATA FÖR ATT SKAPA EN TILLFÄLLIG MOCKLÖSNING. I SLUTVERSION SKA VI GÖRA ETT RIKTIGT FETCH ANROP TILL CENTRALBANKNE
 export async function createTransaction(
   identityToken: string,
   amount: number,
 ): Promise<TransactionResponse> {
-  console.log("Mock transaction", { identityToken, amount });
-
-  return {
-    id: crypto.randomUUID(),
-    stamp: "gold lion",
-  };
+  return request<TransactionResponse>("/transactions", {
+    method: "POST",
+    body: JSON.stringify({
+      identity_token: identityToken,
+      amount,
+      api_key: API_KEY,
+    }),
+  });
 }
 
 export async function createPayout(
@@ -59,6 +58,7 @@ export async function createPayout(
     method: "POST",
     body: JSON.stringify({
       amount,
+      api_key: API_KEY,
     }),
   });
 }
