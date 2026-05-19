@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import "./Layout.css";
@@ -13,6 +14,21 @@ function Layout({ children }: Props) {
   const showFooter =
     location.pathname.startsWith("/escaperoom") ||
     location.pathname.startsWith("/lobby");
+
+  useEffect(() => {
+    const isRoom =
+      location.pathname.startsWith("/escaperoom") ||
+      location.pathname.startsWith("/riddle");
+    if (isRoom) {
+      document.body.classList.add("bg-room2");
+    } else {
+      document.body.classList.remove("bg-room2");
+    }
+
+    return () => {
+      document.body.classList.remove("bg-room2");
+    };
+  }, [location.pathname]);
 
   return (
     <div className="layout-wrapper">

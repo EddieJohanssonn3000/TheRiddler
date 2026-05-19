@@ -111,11 +111,12 @@
 
 @media (min-width: 769px) {
   .app-header--escaperoom {
-    background-image: url("../../assets/purple-room2.png");
-    background-position: center 35%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-blend-mode: darken;
+    /* Remove the large background image so header stays a subtle overlay */
+    background-image: none;
+    background-position: unset;
+    background-size: unset;
+    background-repeat: unset;
+    background-attachment: unset;
+    background-blend-mode: none;
   }
 }
