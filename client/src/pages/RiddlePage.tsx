@@ -74,51 +74,82 @@ function RiddlePage() {
     setIsHintModalOpen(false);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     event.preventDefault();
 
-    const normalizedAnswer = answer.toLowerCase().trim();
-    const normalizedCorrect = currentRiddle.answer.toLowerCase().trim();
+    const guess = answer.toLowerCase().trim();
 
-    if (normalizedAnswer === normalizedCorrect) {
-      setResultModalData({
-        isCorrect: true,
-        message: "Well done! You've solved the riddle!",
-        solvedDifficulty: currentRiddle.difficulty,
+    try {
+      const res = await fetch("/api/validate-riddle", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ riddleId: currentRiddle.id, guess }),
       });
 
-      setIsResultModalOpen(true);
+      if (!res.ok) {
+        throw new Error("Validation request failed");
+      }
 
-      setFeedback({
-        message: "Correct! Well done!",
-        type: "success",
-      });
-    } else {
-      const remainingAttempts = attempts - 1;
-      setAttempts(remainingAttempts);
+      const data = await res.json();
 
-      if (remainingAttempts <= 0) {
+      if (data.correct) {
         setResultModalData({
-          isCorrect: false,
-          message: "Game Over! You've run out of attempts.",
-          correctAnswer: currentRiddle.answer,
+          isCorrect: true,
+          message: "Well done! You've solved the riddle!",
+          solvedDifficulty: currentRiddle.difficulty,
         });
 
         setIsResultModalOpen(true);
 
-        setFeedback({
-          message: `Game Over! The correct answer is ${currentRiddle.answer}`,
-          type: "error",
-        });
+        setFeedback({ message: "Correct! Well done!", type: "success" });
       } else {
-        setFeedback({
-          message: "Wrong answer. Try again!",
-          type: "error",
-        });
-      }
-    }
+        const remainingAttempts = attempts - 1;
+        setAttempts(remainingAttempts);
 
-    setAnswer("");
+        if (remainingAttempts <= 0) {
+          // request reveal from server when game over
+          const revealRes = await fetch("/api/validate-riddle", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              riddleId: currentRiddle.id,
+              guess,
+              reveal: true,
+            }),
+          });
+
+          let revealData: any = {};
+          if (revealRes.ok) {
+            revealData = await revealRes.json();
+          }
+
+          setResultModalData({
+            isCorrect: false,
+            message: "Game Over! You've run out of attempts.",
+            correctAnswer: revealData.correctAnswer,
+          });
+
+          setIsResultModalOpen(true);
+
+          setFeedback({
+            message: `Game Over! The correct answer is ${revealData.correctAnswer ?? "(unknown)"}`,
+            type: "error",
+          });
+        } else {
+          setFeedback({ message: "Wrong answer. Try again!", type: "error" });
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      setFeedback({
+        message: "Unable to validate answer right now.",
+        type: "error",
+      });
+    } finally {
+      setAnswer("");
+    }
   };
 
   return (

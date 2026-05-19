@@ -11,6 +11,6 @@ export type Riddle = {
   readonly id: number;
   readonly difficulty: Difficulty;
   readonly question: string;
-  readonly answer: string;
+  readonly answer?: string;
   readonly hint: string;
 };
