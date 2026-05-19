@@ -43,11 +43,10 @@ function ResultModal({
       </button>
 
       <section
-        className="golden-card"
+        className="golden-card result-modal__card"
         role="dialog"
         aria-modal="true"
         aria-labelledby="result-modal-title"
-        onClick={(event) => event.stopPropagation()}
       >
         <div className="golden-card__corner golden-card__corner--top-left" />
         <div className="golden-card__corner golden-card__corner--top-right" />
@@ -69,14 +68,17 @@ function ResultModal({
               ? "The door is now unlocked. Continue to open the rest of the doors or escape the game."
               : message}
           </p>
+
           <div className="result-modal__stamp-container">
             <img
               src={stampGold}
               alt="stamp"
               className="result-modal__stamp-image"
             />
+
             <p className="result-modal__stamp">You have collected a stamp</p>
           </div>
+
           {correctAnswer && (
             <p className="result-modal__answer">
               <strong>Correct answer:</strong> {correctAnswer}
@@ -85,6 +87,7 @@ function ResultModal({
         </div>
 
         <button
+          type="button"
           className="app-btn app-btn--red result-modal__button"
           onClick={handleBackToDoors}
         >

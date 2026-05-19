@@ -25,7 +25,7 @@ function HintModal({ isOpen, onClose, onConfirm, canBuyHint }: HintModalProps) {
       </button>
 
       <section
-        className="golden-card"
+        className="golden-card hint-modal__card"
         role="dialog"
         aria-modal="true"
         aria-labelledby="hint-modal-title"
@@ -62,11 +62,11 @@ function HintModal({ isOpen, onClose, onConfirm, canBuyHint }: HintModalProps) {
           </button>
 
           <button
-            className="app-btn hint-modal__button"
+            className="app-btn app-btn--white hint-modal__button"
             type="button"
             onClick={onClose}
           >
-            Cancel
+            Save my key
           </button>
         </div>
       </section>

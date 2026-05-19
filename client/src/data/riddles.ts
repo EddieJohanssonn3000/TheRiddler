@@ -5,7 +5,6 @@ export const riddles: Riddle[] = [
     id: 7,
     difficulty: "easy",
     question: "What has a face and two hands but no arms or legs?",
-    answer: "clock",
     hint: "It tells time",
   },
 
@@ -13,7 +12,6 @@ export const riddles: Riddle[] = [
     id: 8,
     difficulty: "easy",
     question: "What gets wetter the more it dries?",
-    answer: "towel",
     hint: "You use it after a shower",
   },
 
@@ -21,7 +19,6 @@ export const riddles: Riddle[] = [
     id: 9,
     difficulty: "easy",
     question: "What has one eye but cannot see?",
-    answer: "needle",
     hint: "Used for sewing",
   },
 
@@ -29,7 +26,6 @@ export const riddles: Riddle[] = [
     id: 10,
     difficulty: "easy",
     question: "What goes up but never comes down?",
-    answer: "age",
     hint: "Everyone has it",
   },
 
@@ -37,14 +33,12 @@ export const riddles: Riddle[] = [
     id: 11,
     difficulty: "easy",
     question: "What has legs but doesn’t walk?",
-    answer: "table",
     hint: "Furniture",
   },
   {
     id: 12,
     difficulty: "medium",
     question: "The more you remove from me, the bigger I get. What am I?",
-    answer: "hole",
     hint: "You can dig it",
   },
 
@@ -53,7 +47,6 @@ export const riddles: Riddle[] = [
     difficulty: "medium",
     question:
       "What can travel around the world while staying in the same corner?",
-    answer: "stamp",
     hint: "You put it on envelopes",
   },
 
@@ -62,7 +55,6 @@ export const riddles: Riddle[] = [
     difficulty: "medium",
     question:
       "I have keys but no locks. I have space but no rooms. You can enter but not go outside. What am I?",
-    answer: "keyboard",
     hint: "Computer related",
   },
 
@@ -71,7 +63,6 @@ export const riddles: Riddle[] = [
     difficulty: "medium",
     question:
       "What comes once in a minute, twice in a moment, but never in a thousand years?",
-    answer: "m",
     hint: "Think letters",
   },
 
@@ -79,7 +70,6 @@ export const riddles: Riddle[] = [
     id: 16,
     difficulty: "medium",
     question: "What has many teeth but cannot bite?",
-    answer: "comb",
     hint: "Used for hair",
   },
   {
@@ -87,7 +77,6 @@ export const riddles: Riddle[] = [
     difficulty: "hard",
     question:
       "I am always hungry, I must always be fed. The finger I touch will soon turn red. What am I?",
-    answer: "fire",
     hint: "Hot",
   },
 
@@ -96,7 +85,6 @@ export const riddles: Riddle[] = [
     difficulty: "hard",
     question:
       "The person who makes it has no need for it. The person who buys it does not use it. The person who uses it cannot see it. What is it?",
-    answer: "coffin",
     hint: "Associated with funerals",
   },
 
@@ -104,7 +92,6 @@ export const riddles: Riddle[] = [
     id: 19,
     difficulty: "hard",
     question: "I have no life, but I can die. What am I?",
-    answer: "battery",
     hint: "Electronic device",
   },
 
@@ -112,7 +99,6 @@ export const riddles: Riddle[] = [
     id: 20,
     difficulty: "hard",
     question: "The more there is, the less you see.",
-    answer: "darkness",
     hint: "Nighttime",
   },
 
@@ -120,7 +106,6 @@ export const riddles: Riddle[] = [
     id: 21,
     difficulty: "hard",
     question: "Forward I am heavy, backward I am not. What am I?",
-    answer: "ton",
     hint: "Read the word backwards",
   },
 ];

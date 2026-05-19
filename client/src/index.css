@@ -27,6 +27,11 @@ body {
   min-height: 100svh;
 }
 
+/* When on escaperoom or riddle pages, show the full room background */
+body.bg-room2 {
+  background: url("./assets/purple-room2.png") center 35% / cover no-repeat fixed;
+}
+
 
 .app-btn {
   display: inline-flex;

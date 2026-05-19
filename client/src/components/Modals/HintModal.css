@@ -2,92 +2,94 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+  display: grid;
+  place-items: center;
+  padding: 1rem;
   background-color: rgba(0, 0, 0, 0.65);
 }
 
-.hint-modal__overlay .golden-card {
-  position: relative;
-  width: min(86vw, 900px);
-  height: auto;
-  max-height: min(70vh, 600px);
-  overflow-y: auto;
-}
-
-.hint-modal__form {
+.hint-modal__card {
+  width: min(90vw, 700px);
+  min-height: min(70vh, 620px);
+  margin: 0;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  gap: clamp(1rem, 2vw, 1.5rem);
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  width: 100%;
-}
-
-.hint-modal__header {
-  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  overflow: hidden;
 }
 
 .hint-modal__close {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 10;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10000;
   background: transparent;
-  border: 2px solid transparent;
+  border: none;
   color: var(--Secondary);
-  font-size: 1.5rem;
-  line-height: 1;
-  padding: 0.25rem 0.5rem;
+  font-size: 1.8rem;
   cursor: pointer;
-  border-radius: 6px;
+  line-height: 1;
 }
 
-.hint-modal__close:hover,
-.hint-modal__close:focus {
-  background-color: rgba(0, 0, 0, 0.1);
-  border-color: var(--Secondary);
-  outline: none;
-}
-
-.hint-modal__input {
-  width: 100%;
-  padding: 0.8rem 0.9rem;
-  border: 2px solid rgba(255, 215, 0, 0.55);
-  background: rgba(255, 255, 255, 0.92);
+.hint-modal__text,
+.hint-modal__error {
+  margin: 0;
+  text-align: center;
   color: var(--Secondary);
-  font-size: 0.95rem;
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  line-height: 1.35;
+}
+
+.hint-modal__error {
+  color: #ef4444;
+  font-weight: 700;
+}
+
+.hint-modal__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 0.5rem;
 }
 
 .hint-modal__button {
-  width: 50%;
-  padding: 0.75rem;
-  font-size: 1rem;
+  /* Match ResultModal button width */
+  width: min(100%, 210px);
+  padding: 0.65rem 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  border: none;
-  border-radius: 6px;
-  background: var(--Primary);
-  color: var(--Secondary);
-  cursor: pointer;
-  transition:
-    transform 0.15s ease,
-    filter 0.15s ease;
 }
 
-.hint-modal__button:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.05);
+.hint-modal__button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
-.hint-modal__header,
-.hint-modal__form,
-.hint-modal__message,
-.hint-modal__label,
-.hint-modal__content {
-  color: var(--Secondary);
-  opacity: 0.95;
+@media (max-width: 768px) {
+  .hint-modal__card {
+    width: 90vw;
+    min-height: 50vh;
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .hint-modal__actions {
+    gap: 0.75rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hint-modal__button {
+    width: min(100%, 210px);
+  }
+
+  .golden-card__corner {
+    width: 42px;
+    height: 42px;
+  }
 }
