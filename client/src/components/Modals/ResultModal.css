@@ -59,6 +59,10 @@
   line-height: 1;
 }
 
+.result-modal__close:hover {
+  transform: translateY(-1px);
+}
+
 .result-modal__title {
   margin: 0;
   text-align: center;

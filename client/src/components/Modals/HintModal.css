@@ -70,6 +70,10 @@
   cursor: not-allowed;
 }
 
+.hint-modal__close:hover {
+  transform: translateY(-1px);
+}
+
 @media (max-width: 768px) {
   .hint-modal__card {
     width: 90vw;

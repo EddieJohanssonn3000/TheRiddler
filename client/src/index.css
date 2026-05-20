@@ -59,6 +59,8 @@ body.bg-room2 {
 }
 
 .app-btn--white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
   opacity: 0.92;
 }
 
@@ -69,8 +71,12 @@ body.bg-room2 {
 }
 
 .app-btn--red:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
   opacity: 0.92;
 }
+
+
 
 .app-input {
   padding: 0.95rem 1rem;
