@@ -21,17 +21,25 @@
 body {
   margin: 0;
   font-family: "Bricolage Grotesque", sans-serif;
-  background:
-    url("./assets/purple-curtain.png") center center / cover no-repeat fixed;
+  background: url("./assets/purple-curtain.png") center center / cover no-repeat
+    fixed;
   background-color: var(--primary-darkPurple);
   min-height: 100svh;
 }
 
-/* When on escaperoom or riddle pages, show the full room background */
+/* Desktop room background */
 body.bg-room2 {
-  background: url("./assets/purple-room2.png") center 35% / cover no-repeat fixed;
+  background: url("./assets/purple-room2.png") center 35% / cover no-repeat
+    fixed;
 }
 
+/* Mobile curtain background */
+@media (max-width: 768px) {
+  body.bg-room2 {
+    background: url("./assets/purple-curtain.png") center top / cover no-repeat
+      fixed;
+  }
+}
 
 .app-btn {
   display: inline-flex;
