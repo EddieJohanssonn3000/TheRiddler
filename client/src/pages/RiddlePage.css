@@ -250,6 +250,9 @@
     min-height: 2.4rem;
     padding: 0.45rem 0.75rem;
     font-size: 1rem;
+    /* mobile: make input full width to match the button */
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .riddle-card__form .app-btn {
