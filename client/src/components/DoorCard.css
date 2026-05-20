@@ -58,8 +58,7 @@
   filter: drop-shadow(0 0 6px rgba(255, 255, 235, 0.95))
     drop-shadow(0 0 14px rgba(255, 215, 0, 0.95))
     drop-shadow(0 0 30px rgba(255, 215, 0, 0.6));
-  border-top-right-radius: 2rem;
-  border-top-left-radius: 2rem;
+  /* keep same corner radii as .door-image-wrapper */
 }
 
 .door-image {
@@ -96,6 +95,11 @@
   height: 150px;
   object-fit: contain;
   z-index: 2;
+  transform-origin: center;
+}
+
+.door-image-wrapper:hover .door-lock {
+  animation: door-lock-shake 0.35s ease-in-out;
 }
 
 .door-button {
@@ -110,6 +114,11 @@
   transition: all 0.3s ease;
 }
 
+.door-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
 .door-card:has(.door-image-wrapper--unlocked) .door-button {
   background: transparent;
   color: var(--Secondary);
@@ -118,4 +127,30 @@
 .door-card:has(.door-image-wrapper--unlocked) .door-button:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(255, 215, 0, 0.3);
+}
+
+@keyframes door-lock-shake {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  20% {
+    transform: translate(-52%, -50%) rotate(-6deg);
+  }
+
+  40% {
+    transform: translate(-48%, -50%) rotate(6deg);
+  }
+
+  60% {
+    transform: translate(-51%, -50%) rotate(-4deg);
+  }
+
+  80% {
+    transform: translate(-49%, -50%) rotate(4deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
 }

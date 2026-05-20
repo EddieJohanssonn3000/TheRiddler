@@ -9,6 +9,8 @@
 }
 
 .result-modal__card {
+  position: relative;
+  isolation: isolate;
   width: min(90vw, 700px);
   min-height: min(70vh, 620px);
 
@@ -25,6 +27,25 @@
   overflow: hidden;
 }
 
+.result-modal__card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -30%;
+  width: 80%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-140%) rotate(15deg);
+  pointer-events: none;
+  animation: result-modal-card-shimmer 1.15s ease-out 0.15s 1;
+  z-index: 1;
+}
+
 .result-modal__close {
   position: absolute;
   top: 1rem;
@@ -38,11 +59,17 @@
   line-height: 1;
 }
 
+.result-modal__close:hover {
+  transform: translateY(-1px);
+}
+
 .result-modal__title {
   margin: 0;
   text-align: center;
   font-size: clamp(1.35rem, 5vw, 1.9rem);
   line-height: 1.05;
+  position: relative;
+  z-index: 2;
 }
 
 .result-modal__title::after {
@@ -61,6 +88,8 @@
   display: grid;
   gap: 0.8rem;
   width: 100%;
+  position: relative;
+  z-index: 2;
 }
 
 .result-modal__message,
@@ -104,6 +133,31 @@
   width: min(100%, 210px);
   padding: 0.65rem 1rem;
   font-size: 0.95rem;
+}
+
+.result-modal__button:hover {
+  background-color: #8f1c1c;
+  transform: scale(1);
+}
+
+@keyframes result-modal-card-shimmer {
+  0% {
+    transform: translateX(-140%) rotate(15deg);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  55% {
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translateX(220%) rotate(15deg);
+    opacity: 0;
+  }
 }
 
 @media (max-width: 768px) {
