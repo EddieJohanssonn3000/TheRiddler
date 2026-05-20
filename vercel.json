@@ -1,13 +1,14 @@
 {
   "buildCommand": "npm install --prefix client && npm run --prefix client build",
+  "devCommand": "npm run --prefix client dev -- --host 0.0.0.0 --port $PORT",
   "outputDirectory": "client/dist",
   "rewrites": [
     {
-      "source": "/api/(.*)",
+      "source": "/api/(.)",
       "destination": "/api/$1"
     },
     {
-      "source": "/(.*)",
+      "source": "/(.)",
       "destination": "/index.html"
     }
   ]

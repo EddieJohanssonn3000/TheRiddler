@@ -15,6 +15,8 @@ module.exports = async (req, res) => {
   let answers = {};
   try {
     answers = JSON.parse(raw);
+    console.log("RIDDLE IDS FROM ENV:", Object.keys(answers));
+    console.log("REQUESTED RIDDLE ID:", riddleId);
   } catch (err) {
     console.error("Invalid RIDDLES_ANSWERS_JSON:", err);
     return res.status(500).json({ error: "Server misconfigured" });
