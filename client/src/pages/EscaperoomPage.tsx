@@ -3,11 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { DoorCard } from "../components/DoorCard";
 import { DoorUnlockModal } from "../components/Modals";
 import { doors } from "../data/doors";
-import {
-  createTransaction,
-  createPayout,
-  type ApiError,
-} from "../services/CentralbankApi";
+import { createTransaction } from "../services/CentralbankApi";
 import { getIdentityToken } from "../utils/identityToken";
 import type { Difficulty } from "../types";
 import "./EscaperoomPage.css";
@@ -24,7 +20,6 @@ function EscaperoomPage() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const [payoutMessage, setPayoutMessage] = useState<string | null>(null);
 
   useEffect(() => {
     window.sessionStorage.setItem(
@@ -49,37 +44,6 @@ function EscaperoomPage() {
       return [...current, solvedDifficulty];
     });
   }, [location.state]);
-
-  useEffect(() => {
-    const payoutDone = window.sessionStorage.getItem("payoutDone") === "true";
-
-    if (unlockedDifficulties.length === 3 && !payoutDone) {
-      const txsRaw = window.sessionStorage.getItem("transactionIds");
-      const txIds = txsRaw ? (JSON.parse(txsRaw) as string[]) : [];
-
-      if (!txIds.length) {
-        setPayoutMessage("No transaction found. Please return to Tivoli.");
-        return;
-      }
-
-      const transactionId = txIds[0]; // use first payment for payout
-
-      (async () => {
-        try {
-          await createPayout(transactionId, 5);
-          window.sessionStorage.setItem("payoutDone", "true");
-          setPayoutMessage("Congrats — you received €5 back!");
-        } catch (err: unknown) {
-          const apiErr = err as ApiError;
-          if (apiErr?.status === 401) {
-            setPayoutMessage("Session expired. Please return to Tivoli.");
-          } else {
-            setPayoutMessage("Payout failed. Please try again later.");
-          }
-        }
-      })();
-    }
-  }, [unlockedDifficulties]);
 
   const handleDoorClick = (doorId: number): void => {
     const door = doors.find((item) => item.id === doorId);
@@ -124,18 +88,8 @@ function EscaperoomPage() {
     try {
       const transaction = await createTransaction(identityToken, door.cost);
 
-      // persist transaction ids and stamps as arrays so we keep history
-      const existingTx = window.sessionStorage.getItem("transactionIds");
-      const txIds = existingTx ? (JSON.parse(existingTx) as string[]) : [];
-      txIds.push(transaction.id);
-      window.sessionStorage.setItem("transactionIds", JSON.stringify(txIds));
-
-      const existingStamps = window.sessionStorage.getItem("stamps");
-      const stamps = existingStamps
-        ? (JSON.parse(existingStamps) as string[])
-        : [];
-      stamps.push(transaction.stamp);
-      window.sessionStorage.setItem("stamps", JSON.stringify(stamps));
+      window.sessionStorage.setItem("transactionId", transaction.id);
+      window.sessionStorage.setItem("stamp", transaction.stamp);
 
       setSelectedDoor(null);
       setValidationMessage("");
