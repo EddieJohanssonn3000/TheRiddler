@@ -36,15 +36,15 @@
 }
 
 .riddle-page__key {
-  width: 34px;
-  height: 34px;
+  width: 45px;
+  height: 45px;
   object-fit: contain;
 }
 
 .riddle-page__attempts-text {
   margin: 0;
   color: var(--gold);
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   letter-spacing: 0.05em;
 }
 
@@ -209,12 +209,12 @@
   }
 
   .riddle-page__key {
-    width: 24px;
-    height: 24px;
+    width: 40px;
+    height: 40px;
   }
 
   .riddle-page__attempts-text {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .riddle-scroll {
