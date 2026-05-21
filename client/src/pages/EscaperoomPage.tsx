@@ -97,22 +97,7 @@ function EscaperoomPage() {
       navigate(`/riddle/${door.difficulty}`);
     } catch (error: unknown) {
       const apiErr = error as { message?: string; status?: number };
-      if (apiErr?.status === 401) {
-        // token expired/consumed — clear it and prompt user to return to Tivoli
-        window.sessionStorage.removeItem("identityToken");
-        setValidationMessage(
-          apiErr.message ?? "Session expired. Please return to Tivoli.",
-        );
-        try {
-          window.open(
-            "https://er-attraktion.se/",
-            "_blank",
-            "noopener,noreferrer",
-          );
-        } catch (e) {
-          // popup blocked — user still sees the message and link
-        }
-      } else if (apiErr?.message) {
+      if (apiErr?.message) {
         setValidationMessage(apiErr.message);
       } else {
         setValidationMessage("Payment failed. Please return to Tivoli.");
