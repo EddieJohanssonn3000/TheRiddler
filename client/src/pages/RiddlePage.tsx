@@ -203,7 +203,7 @@ function RiddlePage() {
             </p>
           )}
 
-          {!isHintRevealed && attempts > 0 && (
+          {!isHintRevealed && attempts > 0 ? (
             <button
               type="button"
               className="riddle-page__hint-trigger"
@@ -211,7 +211,9 @@ function RiddlePage() {
             >
               Need a hint?
             </button>
-          )}
+          ) : isHintRevealed ? (
+            <p className="riddle-card__hint-inline">{currentRiddle.hint}</p>
+          ) : null}
         </div>
       </section>
 
@@ -232,16 +234,13 @@ function RiddlePage() {
         />
       )}
 
-      <section
-        className={`riddle-page__hint-panel ${
-          isHintRevealed ? "riddle-page__hint-panel--open" : ""
-        }`}
-        aria-live="polite"
-      >
-        <div className="riddle-page__hint-panel-inner">
-          <p className="riddle-page__hint-text">{currentRiddle.hint}</p>
-        </div>
-      </section>
+      {!isHintRevealed && (
+        <section className="riddle-page__hint-panel" aria-live="polite">
+          <div className="riddle-page__hint-panel-inner">
+            <p className="riddle-page__hint-text">{currentRiddle.hint}</p>
+          </div>
+        </section>
+      )}
 
       <Footer />
     </div>
