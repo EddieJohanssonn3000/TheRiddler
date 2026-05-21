@@ -27,6 +27,9 @@
   margin: 0;
   text-align: center;
   color: var(--Secondary);
+  font-family: var(--font-title);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   font-weight: 400;
   opacity: 85%;
 }

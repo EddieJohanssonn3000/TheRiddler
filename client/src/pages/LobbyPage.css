@@ -27,16 +27,21 @@
 }
 
 .dashboard-lobby__info h1 {
+  font-family: var(--font-title);
   font-size: clamp(1.8rem, 4vw, 2rem);
   font-weight: 400;
   margin: 0;
-  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .dashboard-lobby__info p {
+  font-family: var(--font-story);
   font-size: 1.05rem;
   font-style: italic;
   line-height: 1.7;
+  font-weight: 600;
+  text-transform: uppercase;
   margin: 0;
 }
 
@@ -79,6 +84,7 @@
 }
 
 .dashboard-lobby__door-text {
+  font-family: var(--font-title);
   position: absolute;
   inset: 0;
   display: flex;
@@ -87,7 +93,7 @@
   color: var(--Secondary);
   font-size: clamp(1.1rem, 2vw, 2rem);
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   opacity: 0;
   transform: translateY(8px) scale(0.96);

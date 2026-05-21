@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap");
+
 :root {
   --color-offwhite: #fdebff;
   --neutral: #fdebff;
@@ -13,6 +15,10 @@
     #5a187b 80%,
     #4e0970 91%
   );
+  --font-title: "Cinzel Decorative", serif;
+  --font-story: "Cormorant Garamond", serif;
+  --font-riddle: "Playfair Display", serif;
+  --font-ui: "Montserrat", sans-serif;
 }
 
 * {
@@ -20,11 +26,18 @@
 }
 body {
   margin: 0;
-  font-family: "Bricolage Grotesque", sans-serif;
+  font-family: var(--font-ui);
   background: url("./assets/purple-curtain.png") center center / cover no-repeat
     fixed;
   background-color: var(--primary-darkPurple);
   min-height: 100svh;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
 }
 
 /* Desktop room background */

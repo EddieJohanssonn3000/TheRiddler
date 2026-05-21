@@ -23,6 +23,9 @@
   background: #1d1033;
   border: 2px solid gold;
   color: gold;
+  font-family: var(--font-title);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   font-weight: bold;
   width: 10rem;
 }
@@ -108,7 +111,9 @@
   background: #c1272d;
   border: none;
   color: white;
+  font-family: var(--font-ui);
   font-weight: bold;
+  letter-spacing: 0.04em;
   cursor: pointer;
   border: 2px solid var(--Secondary);
   transition: all 0.3s ease;
