@@ -105,7 +105,6 @@
   flex-direction: column;
   gap: 0.45rem;
   width: 82%;
-  /* center children so narrower inputs/buttons align visually */
   align-items: center;
 }
 
@@ -120,6 +119,25 @@
   width: 82%;
 
   width: 82%;
+  text-align: center;
+}
+
+.riddle-card__input::placeholder {
+  text-align: center;
+  opacity: 0.7;
+}
+.riddle-card__input::-webkit-input-placeholder {
+  text-align: center;
+}
+.riddle-card__input:-ms-input-placeholder {
+  text-align: center;
+}
+.riddle-card__input::-ms-input-placeholder {
+  text-align: center;
+}
+.riddle-card__input::-moz-placeholder {
+  text-align: center;
+  opacity: 0.7;
 }
 
 .riddle-card__feedback {
