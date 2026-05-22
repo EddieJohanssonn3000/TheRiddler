@@ -26,8 +26,6 @@
   text-align: center;
 }
 
-
-
 .door-unlock-modal .golden-card__title {
   font-size: 1.6rem;
   line-height: 1.1;
@@ -72,11 +70,14 @@
   transition:
     transform 0.15s ease,
     filter 0.15s ease;
+  justify-self: center;
 }
 
 .door-unlock-modal__button {
   background: #c1282c;
   color: var(--Secondary);
+  width: min(84%, 240px);
+  max-width: 240px;
 }
 
 .door-unlock-modal__close {
@@ -103,5 +104,16 @@
 @media (max-width: 480px) {
   .door-unlock-modal {
     padding-inline: 1.25rem;
+  }
+
+  .door-unlock-modal__button {
+    width: min(72%, 200px);
+    max-width: 200px;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .door-unlock-modal .golden-card__title {
+    font-size: 1.2rem;
   }
 }
