@@ -3,12 +3,25 @@ export interface ApiError {
   status?: number;
 }
 
+export type TransactionStamp = {
+  animal: string;
+  metal: string | null;
+  image_url: string;
+};
+
 export interface TransactionResponse {
-  id: string;
-  stamp: string;
+  transaction_id: number;
+  amount: number;
+  stamp: TransactionStamp | null;
 }
 
-const API_BASE_URL = import.meta.env.VITE_CENTRALBANK_API_URL;
+export interface PayoutResponse {
+  transaction_id: number;
+  amount: number;
+}
+
+const API_BASE_URL =
+  import.meta.env.VITE_CENTRALBANK_API_URL?.replace(/\/+$/, "") ?? "";
 const API_KEY = import.meta.env.VITE_CENTRALBANK_API_KEY;
 const USE_MOCK_BANK = import.meta.env.VITE_USE_MOCK_BANK === "true";
 
@@ -48,8 +61,13 @@ export async function createTransaction(
     });
 
     return {
-      id: crypto.randomUUID(),
-      stamp: "gold lion",
+      transaction_id: Date.now(),
+      amount,
+      stamp: {
+        animal: "lion",
+        metal: null,
+        image_url: "https://example.com/stamp.png",
+      },
     };
   }
 
@@ -66,17 +84,20 @@ export async function createTransaction(
 export async function createPayout(
   transactionId: string,
   amount: number,
-): Promise<void> {
+): Promise<PayoutResponse> {
   if (USE_MOCK_BANK) {
     console.log("Mock payout", {
       transactionId,
       amount,
     });
 
-    return;
+    return {
+      transaction_id: Number(transactionId),
+      amount,
+    };
   }
 
-  await request(`/transactions/${transactionId}/payout`, {
+  return request<PayoutResponse>(`/transactions/${transactionId}/payout`, {
     method: "POST",
     body: JSON.stringify({
       amount,

@@ -88,8 +88,15 @@ function EscaperoomPage() {
     try {
       const transaction = await createTransaction(identityToken, door.cost);
 
-      window.sessionStorage.setItem("transactionId", transaction.id);
-      window.sessionStorage.setItem("stamp", transaction.stamp);
+      window.sessionStorage.setItem(
+        "transactionId",
+        String(transaction.transaction_id),
+      );
+      if (transaction.stamp) {
+        window.sessionStorage.setItem("stamp", transaction.stamp.image_url);
+      } else {
+        window.sessionStorage.removeItem("stamp");
+      }
 
       setSelectedDoor(null);
       setValidationMessage("");

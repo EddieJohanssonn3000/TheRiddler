@@ -1,49 +1,55 @@
 # TheRiddler
 
-This project includes a Vercel API route for riddle validation and an optional local Express server for development.
+This project contains the Tivoli frontend, the riddle game, and a small Vercel serverless function for validating riddle answers.
 
-To run the client:
+## Vercel Environment Variables
 
-````
+Add these in your Vercel project settings for **Production** and **Preview**:
+
+```bash
+VITE_CENTRALBANK_API_URL=https://api.loopland.se
+VITE_CENTRALBANK_API_KEY=2396dc2d-15f4-4135-b2de-485c5c283256
+RIDDLES_ANSWERS_JSON={"7":"clock","8":"towel","9":"needle","10":"age","11":"table","12":"hole","13":"stamp","14":"keyboard","15":"m","16":"comb","17":"fire","18":"coffin","19":"battery","20":"darkness","21":"ton"}
+```
+
+### What each variable is for
+
+- `VITE_CENTRALBANK_API_URL`: the new Centralbank API base URL.
+- `VITE_CENTRALBANK_API_KEY`: API key used by the amusement when creating transactions and payouts.
+- `RIDDLES_ANSWERS_JSON`: JSON string used by the serverless riddle validator at `/api/validate-riddle`.
+
+## Deploying to Vercel
+
+1. Push the repository to your Git provider.
+2. Create or open the Vercel project from the repository.
+3. Make sure the project root is the repository root so `vercel.json` can build the frontend and expose `/api/validate-riddle`.
+4. Add the environment variables above.
+5. Redeploy after any env changes.
+
+The riddle validator will be available at:
+
+```bash
+https://<your-project>.vercel.app/api/validate-riddle
+```
+
+## Local development
+
+### Client
+
+```bash
 cd client
 npm install
 npm run dev
+```
 
-Deploying everything to Vercel (recommended)
---------------------------------------------
+### Optional Vercel-style local run
 
-This project is set up so you can deploy both the frontend and the small validation API as one Vercel project.
+```bash
+npm i -g vercel
+vercel dev
+```
 
-What we did
-- Added a serverless function at `/api/validate-riddle` that validates riddle answers on the server side.
-- The correct answers are stored in a Vercel Environment Variable `RIDDLES_ANSWERS_JSON` (a JSON string). This keeps answers out of the client bundle and the git repo.
-- Added a root-level `vercel.json` so Vercel can build the client from `client/` and still expose the API from repo root.
+## Notes
 
-Quick deploy steps
-1. Push the repository to your Git provider (GitHub/GitLab).
-2. In Vercel, create a new project from the repo.
-3. In the Project Settings → Environment Variables, add `RIDDLES_ANSWERS_JSON` with a JSON value like:
-	 {"7":"clock","8":"towel","9":"needle","10":"age"}
-4. Deploy. The serverless function will be available at `https://<your-project>.vercel.app/api/validate-riddle` and the frontend can call `/api/validate-riddle` relatively.
-
-Important
-- The recommended setup is to keep the Vercel project root at the repository root and let `vercel.json` handle the client build.
-- The top-level `api/validate-riddle.js` is the function Vercel should deploy in that setup.
-
-Local development
------------------
-- Option A (recommended for parity with Vercel): install Vercel CLI and run `vercel dev` from the repo root. Copy `.env.example` to `.env` and add your answers there.
-
-	```bash
-	npm i -g vercel
-	cp .env.example .env
-	# edit .env to include your answers
-	vercel dev
-	```
-
-- Option B (existing workflow): You can continue using the local Express server under `/server` for development, and the client is already configured with a Vite proxy to forward `/api` to `http://localhost:4000`.
-
-Security note
-- Do NOT commit any real `server/secrets/riddles-answers.json` or local `.env` files. Use `server/.gitignore` and the project `.gitignore` to exclude secrets. Use Vercel Environment Variables for production secrets.
-
-````
+- Do not commit local secret files or private environment files.
+- `VITE_USE_MOCK_BANK=true` can be used locally if you want to bypass the real bank during development, but it should not be enabled in production.
