@@ -5,8 +5,13 @@ import keyGold from "../assets/keygold.png";
 import keyBlack from "../assets/keyblack.png";
 import { HintModal, ResultModal } from "../components/Modals";
 import Footer from "../components/Footer";
+import { createPayout } from "../services/CentralbankApi";
 import type { Difficulty, Riddle } from "../types";
 import "./RiddlePage.css";
+
+type RevealResponse = {
+  correctAnswer?: string;
+};
 
 function RiddlePage() {
   const { difficulty } = useParams();
@@ -74,6 +79,44 @@ function RiddlePage() {
     setIsHintModalOpen(false);
   };
 
+  const handleCompletedDoor = async (
+    solvedDifficulty: Difficulty,
+  ): Promise<void> => {
+    const solvedDifficulties: Difficulty[] = JSON.parse(
+      sessionStorage.getItem("solvedDifficulties") ?? "[]",
+    );
+
+    if (!solvedDifficulties.includes(solvedDifficulty)) {
+      solvedDifficulties.push(solvedDifficulty);
+
+      sessionStorage.setItem(
+        "solvedDifficulties",
+        JSON.stringify(solvedDifficulties),
+      );
+    }
+
+    const hasSolvedAll =
+      solvedDifficulties.includes("easy") &&
+      solvedDifficulties.includes("medium") &&
+      solvedDifficulties.includes("hard");
+
+    const hasReceivedPayout =
+      sessionStorage.getItem("hasReceivedPayout") === "true";
+
+    if (!hasSolvedAll || hasReceivedPayout) {
+      return;
+    }
+
+    const transactionId = sessionStorage.getItem("transactionId");
+
+    if (!transactionId) {
+      return;
+    }
+
+    await createPayout(transactionId, 5);
+    sessionStorage.setItem("hasReceivedPayout", "true");
+  };
+
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>,
   ): Promise<void> => {
@@ -92,9 +135,11 @@ function RiddlePage() {
         throw new Error("Validation request failed");
       }
 
-      const data = await res.json();
+      const data: { correct: boolean } = await res.json();
 
       if (data.correct) {
+        await handleCompletedDoor(currentRiddle.difficulty);
+
         setResultModalData({
           isCorrect: true,
           message: "Well done! You've solved the riddle!",
@@ -109,7 +154,6 @@ function RiddlePage() {
         setAttempts(remainingAttempts);
 
         if (remainingAttempts <= 0) {
-          // request reveal from server when game over
           const revealRes = await fetch("/api/validate-riddle", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -120,7 +164,8 @@ function RiddlePage() {
             }),
           });
 
-          let revealData: any = {};
+          let revealData: RevealResponse = {};
+
           if (revealRes.ok) {
             revealData = await revealRes.json();
           }
