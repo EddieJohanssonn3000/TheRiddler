@@ -63,6 +63,42 @@
   justify-content: center;
 }
 
+.app-header__stamp {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  pointer-events: none;
+  z-index: 11;
+}
+
+/* Make the stamp vertical in the header with text underneath */
+.app-header__stamp .stamp-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.app-header__stamp .stamp-display__image {
+  width: 44px;
+  height: 44px;
+}
+
+.app-header__stamp .stamp-display__text {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--Secondary);
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .app-header__meta-top {
   display: flex;
   align-items: baseline;
@@ -87,12 +123,13 @@
 
 @media (max-width: 640px) {
   .app-header {
-    gap: 0.75rem;
-    padding: 0.8rem 1rem;
+    gap: 0.5rem;
+    padding: 0.6rem 0.8rem;
+    position: relative;
   }
 
   .app-header__logo {
-    width: min(100px, 40vw);
+    width: min(90px, 30vw);
   }
 
   .app-header__meta {
@@ -100,6 +137,25 @@
     flex: 0 1 auto;
     text-align: right;
     align-items: flex-end;
+    font-size: 0.85rem;
+  }
+
+  /* Center the stamp in the header on small screens */
+  .app-header__stamp {
+    position: absolute;
+    left: 50%;
+    top: 150%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .app-header__stamp .stamp-display__image {
+    width: 36px;
+    height: 36px;
+  }
+
+  .app-header__stamp .stamp-display__text {
+    font-size: 0.6rem;
   }
 }
 

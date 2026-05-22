@@ -2,7 +2,6 @@ import "./DoorCard.css";
 import doorImage from "../assets/NewDoor.png";
 import openDoorImage from "../assets/NewDoorUnlocked.png";
 import lockIcon from "../assets/Lock-locked.png";
-import { StampDisplay } from "./StampDisplay";
 import type { Door } from "../types";
 
 type DoorCardProps = {
@@ -20,7 +19,9 @@ export function DoorCard({ door, isUnlocked, onClick }: DoorCardProps) {
         </h2>
       </div>
 
-      <div className={`door-image-wrapper ${isUnlocked ? "door-image-wrapper--unlocked" : ""}`}>
+      <div
+        className={`door-image-wrapper ${isUnlocked ? "door-image-wrapper--unlocked" : ""}`}
+      >
         <img
           className="door-image"
           src={isUnlocked ? openDoorImage : doorImage}
@@ -40,7 +41,7 @@ export function DoorCard({ door, isUnlocked, onClick }: DoorCardProps) {
         {isUnlocked ? "ESCAPE" : "UNLOCK"}
       </button>
 
-      <StampDisplay isUnlocked={isUnlocked} />
+      {/* Stamp moved to header: single stamp shown after first door is unlocked */}
     </article>
   );
 }
