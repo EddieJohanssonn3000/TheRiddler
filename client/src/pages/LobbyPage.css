@@ -81,6 +81,9 @@
   transition:
     transform 0.2s ease,
     filter 0.2s ease;
+  border: 4px solid var(--Secondary);
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.45), 0 0 24px rgba(255,215,0,0.12) inset;
 }
 
 .dashboard-lobby__door-text {
