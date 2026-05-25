@@ -35,7 +35,8 @@ function Header() {
     (location.state as { solvedDifficulty?: string } | null) ?? null;
   const hasAnyUnlock =
     (Array.isArray(unlocked) && unlocked.length > 0) ||
-    Boolean(navState?.solvedDifficulty);
+    Boolean(navState?.solvedDifficulty) ||
+    Boolean(window.sessionStorage.getItem("stamp"));
 
   const handleLogoClick = (): void => {
     navigate("/lobby");

@@ -89,7 +89,7 @@ function ResultModal({
         <div className="result-modal__content">
           <p className="result-modal__message">{message}</p>
 
-          {isCorrect && showStampMessage && (
+          {showStampMessage && (
             <div className="result-modal__stamp-container">
               <img
                 src={stampGold}

@@ -187,10 +187,19 @@ function RiddlePage() {
             revealData = await revealRes.json();
           }
 
+          const solvedDifficulties: Difficulty[] = JSON.parse(
+            sessionStorage.getItem("solvedDifficulties") ?? "[]",
+          );
+
+          const showStampMessage =
+            Boolean(sessionStorage.getItem("stamp")) &&
+            solvedDifficulties.length === 0;
+
           setResultModalData({
             isCorrect: false,
             message: "Game Over! You've run out of attempts.",
             correctAnswer: revealData.correctAnswer,
+            showStampMessage,
           });
 
           setIsResultModalOpen(true);
