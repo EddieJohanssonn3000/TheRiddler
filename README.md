@@ -53,3 +53,11 @@ vercel dev
 
 - Do not commit local secret files or private environment files.
 - `VITE_USE_MOCK_BANK=true` can be used locally if you want to bypass the real bank during development, but it should not be enabled in production.
+
+## A11y requirements
+
+We have considered accessibility by making the main interactions possible through buttons and form elements, which support keyboard navigation. Interactive elements such as doors, modal buttons, hints and answer submission can be reached and used without a mouse.
+
+We have also worked with clear target sizes for buttons and clickable areas, especially on mobile, to make the game easier to use.
+
+To support the user when entering answers, the game provides placeholder text, hints, feedback after incorrect answers and the correct answer after game over.
