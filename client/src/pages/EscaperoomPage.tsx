@@ -92,9 +92,11 @@ function EscaperoomPage() {
         "transactionId",
         String(transaction.transaction_id),
       );
-      if (transaction.stamp) {
+      // Only set the stamp on the first successful transaction.
+      if (transaction.stamp && !window.sessionStorage.getItem("stamp")) {
         window.sessionStorage.setItem("stamp", transaction.stamp.image_url);
-      } else {
+      }
+      if (!transaction.stamp && !window.sessionStorage.getItem("stamp")) {
         window.sessionStorage.removeItem("stamp");
       }
 

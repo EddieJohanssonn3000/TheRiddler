@@ -147,7 +147,9 @@ function RiddlePage() {
         const solvedDifficulties: Difficulty[] = JSON.parse(
           sessionStorage.getItem("solvedDifficulties") ?? "[]",
         );
-        const showStampMessage = solvedDifficulties.length === 0;
+        const hasStamp = Boolean(sessionStorage.getItem("stamp"));
+        const stampShown = sessionStorage.getItem("stampShown") === "true";
+        const showStampMessage = hasStamp && !stampShown && solvedDifficulties.length === 0;
 
         const hasCompletedGame = await handleCompletedDoor(
           currentRiddle.difficulty,
@@ -162,6 +164,10 @@ function RiddlePage() {
           hasCompletedGame,
           showStampMessage,
         });
+
+        if (showStampMessage) {
+          sessionStorage.setItem("stampShown", "true");
+        }
 
         setIsResultModalOpen(true);
 
@@ -191,9 +197,13 @@ function RiddlePage() {
             sessionStorage.getItem("solvedDifficulties") ?? "[]",
           );
 
-          const showStampMessage =
-            Boolean(sessionStorage.getItem("stamp")) &&
-            solvedDifficulties.length === 0;
+          const hasStamp = Boolean(sessionStorage.getItem("stamp"));
+          const stampShown = sessionStorage.getItem("stampShown") === "true";
+          const showStampMessage = hasStamp && !stampShown && solvedDifficulties.length === 0;
+
+          if (showStampMessage) {
+            sessionStorage.setItem("stampShown", "true");
+          }
 
           setResultModalData({
             isCorrect: false,
