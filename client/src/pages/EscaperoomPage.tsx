@@ -49,7 +49,7 @@ function EscaperoomPage() {
     const door = doors.find((item) => item.id === doorId);
 
     if (door && unlockedDifficulties.includes(door.difficulty)) {
-      window.location.href = "https://frontend-main-1ac7.up.railway.app/";
+      window.location.href = "https://loopland.se/";
       return;
     }
 
