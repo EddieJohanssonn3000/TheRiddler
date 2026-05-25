@@ -25,22 +25,23 @@ function LobbyPage() {
 
           <p>
             Behind every door hides a unique riddle that must be solved in order
-            to escape. Each door has its own entrance fee, and every unlocked
-            door rewards you with a collectible stamp.
+            to escape. Each door has its own entrance fee, but only one special
+            door awards a collectible stamp when unlocked — the rest give keys
+            or other rewards.
           </p>
 
           <p>
             You can choose your own path through the game. Try to unlock a
-            single door and escape early, or challenge yourself by solving every
-            door in the room. Be careful — you only have three attempts per
+            single door and escape early, or challenge yourself by solving more
+            doors in the room. Be careful — you only have three attempts per
             riddle before the door locks permanently.
           </p>
 
           <p>
-            Solve all riddles, collect every stamp and key, and successfully
-            escape through every door to claim the final grand prize of €5.
-            Choose wisely, think carefully, and see if you have what it takes to
-            escape them all.
+            Solve riddles, unlock the special stamped door to collect the unique
+            stamp and successfully escape to claim the final
+            grand prize of €5. Choose wisely, think carefully, and see if you
+            have what it takes to win.
           </p>
 
           <p>Click on the door to enter the room</p>
