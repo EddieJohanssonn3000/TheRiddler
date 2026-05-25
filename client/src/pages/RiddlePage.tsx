@@ -31,7 +31,6 @@ function RiddlePage() {
     message: string;
     correctAnswer?: string;
     solvedDifficulty?: Difficulty;
-    showStampMessage?: boolean;
     hasCompletedGame?: boolean;
   } | null>(null);
 
@@ -84,12 +83,9 @@ function RiddlePage() {
   const handleCompletedDoor = async (
     solvedDifficulty: Difficulty,
   ): Promise<boolean> => {
-  ): Promise<boolean> => {
     const solvedDifficulties: Difficulty[] = JSON.parse(
       sessionStorage.getItem("solvedDifficulties") ?? "[]",
     );
-
-    const isFirstSolvedDoor = solvedDifficulties.length === 0;
 
     if (!solvedDifficulties.includes(solvedDifficulty)) {
       solvedDifficulties.push(solvedDifficulty);
@@ -109,7 +105,6 @@ function RiddlePage() {
       sessionStorage.getItem("hasReceivedPayout") === "true";
 
     if (!hasSolvedAll || hasReceivedPayout) {
-      return isFirstSolvedDoor;
       return false;
     }
 
@@ -122,8 +117,6 @@ function RiddlePage() {
     await createPayout(transactionId, 5);
 
     sessionStorage.setItem("hasReceivedPayout", "true");
-
-    return isFirstSolvedDoor;
     sessionStorage.setItem("hasCompletedGame", "true");
 
     return true;
@@ -150,9 +143,6 @@ function RiddlePage() {
       const data: { correct: boolean } = await res.json();
 
       if (data.correct) {
-        const showStampMessage = await handleCompletedDoor(
-          currentRiddle.difficulty,
-        );
         const hasCompletedGame = await handleCompletedDoor(
           currentRiddle.difficulty,
         );
@@ -163,7 +153,6 @@ function RiddlePage() {
             ? "Congrats! You solved all three doors and collected the winning prize of €5."
             : "The door is now unlocked. Continue to open the rest of the doors and win €5 or escape the game.",
           solvedDifficulty: currentRiddle.difficulty,
-          showStampMessage,
           hasCompletedGame,
         });
 
@@ -297,7 +286,6 @@ function RiddlePage() {
           message={resultModalData.message}
           correctAnswer={resultModalData.correctAnswer}
           solvedDifficulty={resultModalData.solvedDifficulty}
-          showStampMessage={resultModalData.showStampMessage}
           hasCompletedGame={resultModalData.hasCompletedGame}
         />
       )}
