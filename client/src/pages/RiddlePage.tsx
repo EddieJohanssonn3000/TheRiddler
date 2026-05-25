@@ -114,7 +114,12 @@ function RiddlePage() {
     }
 
     await createPayout(transactionId, 5);
-    sessionStorage.setItem("hasReceivedPayout", "true");
+
+    sessionStorage.removeItem("unlockedDifficulties");
+    sessionStorage.removeItem("solvedDifficulties");
+    sessionStorage.removeItem("transactionId");
+    sessionStorage.removeItem("stamp");
+    sessionStorage.removeItem("hasReceivedPayout");
   };
 
   const handleSubmit = async (
