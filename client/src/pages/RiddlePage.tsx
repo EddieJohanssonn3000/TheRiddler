@@ -31,6 +31,7 @@ function RiddlePage() {
     message: string;
     correctAnswer?: string;
     solvedDifficulty?: Difficulty;
+    hasCompletedGame?: boolean;
   } | null>(null);
 
   useEffect(() => {
@@ -81,7 +82,7 @@ function RiddlePage() {
 
   const handleCompletedDoor = async (
     solvedDifficulty: Difficulty,
-  ): Promise<void> => {
+  ): Promise<boolean> => {
     const solvedDifficulties: Difficulty[] = JSON.parse(
       sessionStorage.getItem("solvedDifficulties") ?? "[]",
     );
@@ -104,22 +105,21 @@ function RiddlePage() {
       sessionStorage.getItem("hasReceivedPayout") === "true";
 
     if (!hasSolvedAll || hasReceivedPayout) {
-      return;
+      return false;
     }
 
     const transactionId = sessionStorage.getItem("transactionId");
 
     if (!transactionId) {
-      return;
+      return false;
     }
 
     await createPayout(transactionId, 5);
 
-    sessionStorage.removeItem("unlockedDifficulties");
-    sessionStorage.removeItem("solvedDifficulties");
-    sessionStorage.removeItem("transactionId");
-    sessionStorage.removeItem("stamp");
-    sessionStorage.removeItem("hasReceivedPayout");
+    sessionStorage.setItem("hasReceivedPayout", "true");
+    sessionStorage.setItem("hasCompletedGame", "true");
+
+    return true;
   };
 
   const handleSubmit = async (
@@ -143,12 +143,17 @@ function RiddlePage() {
       const data: { correct: boolean } = await res.json();
 
       if (data.correct) {
-        await handleCompletedDoor(currentRiddle.difficulty);
+        const hasCompletedGame = await handleCompletedDoor(
+          currentRiddle.difficulty,
+        );
 
         setResultModalData({
           isCorrect: true,
-          message: "Well done! You've solved the riddle!",
+          message: hasCompletedGame
+            ? "Congrats! You solved all three doors and collected the winning prize of €5."
+            : "The door is now unlocked. Continue to open the rest of the doors and win €5 or escape the game.",
           solvedDifficulty: currentRiddle.difficulty,
+          hasCompletedGame,
         });
 
         setIsResultModalOpen(true);
@@ -281,6 +286,7 @@ function RiddlePage() {
           message={resultModalData.message}
           correctAnswer={resultModalData.correctAnswer}
           solvedDifficulty={resultModalData.solvedDifficulty}
+          hasCompletedGame={resultModalData.hasCompletedGame}
         />
       )}
 
