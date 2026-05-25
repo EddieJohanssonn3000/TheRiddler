@@ -1,5 +1,5 @@
 import "./DoorCard.css";
-import doorImage from "../assets/NewDoor.png";
+import doorImage from "../assets/NewDoor2.png";
 import openDoorImage from "../assets/NewDoorUnlocked.png";
 import lockIcon from "../assets/Lock-locked.png";
 import type { Door } from "../types";
