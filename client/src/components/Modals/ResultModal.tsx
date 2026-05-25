@@ -10,6 +10,7 @@ type ResultModalProps = {
   message: string;
   correctAnswer?: string;
   solvedDifficulty?: Difficulty;
+  hasCompletedGame?: boolean;
 };
 
 function ResultModal({
@@ -18,6 +19,7 @@ function ResultModal({
   message,
   correctAnswer,
   solvedDifficulty,
+  hasCompletedGame = false,
 }: ResultModalProps) {
   const navigate = useNavigate();
 
@@ -83,18 +85,15 @@ function ResultModal({
         </h2>
 
         <div className="result-modal__content">
-          <p className="result-modal__message">
-            {isCorrect
-              ? "The door is now unlocked. Continue to open the rest of the doors or escape the game."
-              : message}
-          </p>
+          <p className="result-modal__message">{message}</p>
 
-          <div className="result-modal__stamp-container">
-            <img
-              src={stampGold}
-              alt="stamp"
-              className="result-modal__stamp-image"
-            />
+          {isCorrect && (
+            <div className="result-modal__stamp-container">
+              <img
+                src={stampGold}
+                alt="stamp"
+                className="result-modal__stamp-image"
+              />
 
               <p className="result-modal__stamp">You have collected a stamp</p>
             </div>

@@ -1,5 +1,5 @@
 import "./Header.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import theRiddlerLogo from "../../assets/TheRiddlerFontLogo.png";
 import { StampDisplay } from "../StampDisplay";
 
@@ -21,7 +21,6 @@ function getHeaderLabel(pathname: string): string {
 
 function Header() {
   const location = useLocation();
-  const navigate = useNavigate();
   const playerName = window.sessionStorage.getItem("playerName");
   const headerLabel = getHeaderLabel(location.pathname);
   const isEscaperoom = location.pathname.startsWith("/escaperoom");
@@ -37,26 +36,17 @@ function Header() {
     (Array.isArray(unlocked) && unlocked.length > 0) ||
     Boolean(navState?.solvedDifficulty);
 
-  const handleLogoClick = (): void => {
-    navigate("/lobby");
-  };
-
   return (
     <header
       className={`app-header ${isEscaperoom ? "app-header--escaperoom" : ""}`}
     >
-      <button
-        type="button"
-        className="app-header__brand"
-        aria-label="Go to lobby"
-        onClick={handleLogoClick}
-      >
+      <div className="app-header__brand">
         <img
           src={theRiddlerLogo}
           alt="The Riddler"
           className="app-header__logo"
         />
-      </button>
+      </div>
 
       <div className="app-header__stamp" aria-hidden={!hasAnyUnlock}>
         <StampDisplay isUnlocked={hasAnyUnlock} />
