@@ -32,6 +32,7 @@ function RiddlePage() {
     correctAnswer?: string;
     solvedDifficulty?: Difficulty;
     hasCompletedGame?: boolean;
+    showStampMessage?: boolean;
   } | null>(null);
 
   useEffect(() => {
@@ -143,6 +144,11 @@ function RiddlePage() {
       const data: { correct: boolean } = await res.json();
 
       if (data.correct) {
+        const solvedDifficulties: Difficulty[] = JSON.parse(
+          sessionStorage.getItem("solvedDifficulties") ?? "[]",
+        );
+        const showStampMessage = solvedDifficulties.length === 0;
+
         const hasCompletedGame = await handleCompletedDoor(
           currentRiddle.difficulty,
         );
@@ -154,6 +160,7 @@ function RiddlePage() {
             : "The door is now unlocked. Continue to open the rest of the doors and win €5 or escape the game.",
           solvedDifficulty: currentRiddle.difficulty,
           hasCompletedGame,
+          showStampMessage,
         });
 
         setIsResultModalOpen(true);
@@ -287,6 +294,7 @@ function RiddlePage() {
           correctAnswer={resultModalData.correctAnswer}
           solvedDifficulty={resultModalData.solvedDifficulty}
           hasCompletedGame={resultModalData.hasCompletedGame}
+          showStampMessage={resultModalData.showStampMessage}
         />
       )}
 

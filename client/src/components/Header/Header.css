@@ -22,9 +22,21 @@
   border: none;
   padding: 0;
   cursor: pointer;
+  appearance: none;
   transition:
     transform 0.2s ease,
     filter 0.2s ease;
+}
+
+.app-header__brand:hover,
+.app-header__brand:focus-visible {
+  transform: translateY(-1px) scale(1.09);
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.38));
+}
+
+.app-header__brand:focus-visible {
+  outline: 2px solid rgba(255, 215, 0, 0.9);
+  outline-offset: 4px;
 }
 
 .app-header__logo {
