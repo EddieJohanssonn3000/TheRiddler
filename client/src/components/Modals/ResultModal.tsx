@@ -35,6 +35,7 @@ function ResultModal({
       sessionStorage.removeItem("solvedDifficulties");
       sessionStorage.removeItem("transactionId");
       sessionStorage.removeItem("stamp");
+      sessionStorage.removeItem("stampShown");
       sessionStorage.removeItem("hasReceivedPayout");
       sessionStorage.removeItem("hasCompletedGame");
 
