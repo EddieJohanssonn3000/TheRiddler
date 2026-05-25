@@ -10,6 +10,7 @@ type ResultModalProps = {
   message: string;
   correctAnswer?: string;
   solvedDifficulty?: Difficulty;
+  showStampMessage?: boolean;
 };
 
 function ResultModal({
@@ -18,6 +19,7 @@ function ResultModal({
   message,
   correctAnswer,
   solvedDifficulty,
+  showStampMessage = false,
 }: ResultModalProps) {
   const navigate = useNavigate();
 
@@ -69,15 +71,17 @@ function ResultModal({
               : message}
           </p>
 
-          <div className="result-modal__stamp-container">
-            <img
-              src={stampGold}
-              alt="stamp"
-              className="result-modal__stamp-image"
-            />
+          {showStampMessage && (
+            <div className="result-modal__stamp-container">
+              <img
+                src={stampGold}
+                alt="stamp"
+                className="result-modal__stamp-image"
+              />
 
-            <p className="result-modal__stamp">You have collected a stamp</p>
-          </div>
+              <p className="result-modal__stamp">You have collected a stamp</p>
+            </div>
+          )}
 
           {correctAnswer && (
             <p className="result-modal__answer">

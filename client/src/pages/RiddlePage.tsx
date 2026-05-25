@@ -31,6 +31,7 @@ function RiddlePage() {
     message: string;
     correctAnswer?: string;
     solvedDifficulty?: Difficulty;
+    showStampMessage?: boolean;
   } | null>(null);
 
   useEffect(() => {
@@ -81,10 +82,12 @@ function RiddlePage() {
 
   const handleCompletedDoor = async (
     solvedDifficulty: Difficulty,
-  ): Promise<void> => {
+  ): Promise<boolean> => {
     const solvedDifficulties: Difficulty[] = JSON.parse(
       sessionStorage.getItem("solvedDifficulties") ?? "[]",
     );
+
+    const isFirstSolvedDoor = solvedDifficulties.length === 0;
 
     if (!solvedDifficulties.includes(solvedDifficulty)) {
       solvedDifficulties.push(solvedDifficulty);
@@ -104,7 +107,7 @@ function RiddlePage() {
       sessionStorage.getItem("hasReceivedPayout") === "true";
 
     if (!hasSolvedAll || hasReceivedPayout) {
-      return;
+      return isFirstSolvedDoor;
     }
 
     const transactionId = sessionStorage.getItem("transactionId");
@@ -115,6 +118,8 @@ function RiddlePage() {
 
     await createPayout(transactionId, 5);
     sessionStorage.setItem("hasReceivedPayout", "true");
+
+    return isFirstSolvedDoor;
   };
 
   const handleSubmit = async (
@@ -138,12 +143,15 @@ function RiddlePage() {
       const data: { correct: boolean } = await res.json();
 
       if (data.correct) {
-        await handleCompletedDoor(currentRiddle.difficulty);
+        const showStampMessage = await handleCompletedDoor(
+          currentRiddle.difficulty,
+        );
 
         setResultModalData({
           isCorrect: true,
           message: "Well done! You've solved the riddle!",
           solvedDifficulty: currentRiddle.difficulty,
+          showStampMessage,
         });
 
         setIsResultModalOpen(true);
@@ -276,6 +284,7 @@ function RiddlePage() {
           message={resultModalData.message}
           correctAnswer={resultModalData.correctAnswer}
           solvedDifficulty={resultModalData.solvedDifficulty}
+          showStampMessage={resultModalData.showStampMessage}
         />
       )}
 
