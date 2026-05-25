@@ -49,7 +49,7 @@ function EscaperoomPage() {
     const door = doors.find((item) => item.id === doorId);
 
     if (door && unlockedDifficulties.includes(door.difficulty)) {
-      window.parent.postMessage({ type: "AMUSEMENT_CLOSE" }, "");
+      window.parent.postMessage({ type: "AMUSEMENT_CLOSE" }, "*");
       return;
     }
 
