@@ -2,6 +2,17 @@
   "buildCommand": "npm install --prefix client && npm run --prefix client build",
   "devCommand": "npm run --prefix client dev -- --host 0.0.0.0 --port $PORT",
   "outputDirectory": "client/dist",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'self' https://loopland.se"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/(.*)",

@@ -65,7 +65,7 @@ function ResultModal({
         <div className="result-modal__content">
           <p className="result-modal__message">
             {isCorrect
-              ? "The door is now unlocked. Continue to open the rest of the doors or escape the game."
+              ? "The door is now unlocked. Continue to open the rest of the doors and win 5€ or escape the game."
               : message}
           </p>
 
