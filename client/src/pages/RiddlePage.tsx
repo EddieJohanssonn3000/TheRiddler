@@ -156,7 +156,7 @@ function RiddlePage() {
         setResultModalData({
           isCorrect: true,
           message: hasCompletedGame
-            ? "Congrats! You solved all three doors and collected the winning prize of €5."
+            ? "You solved all three doors and collected the winning prize of €5."
             : "The door is now unlocked. Continue to open the rest of the doors and win €5 or escape the game.",
           solvedDifficulty: currentRiddle.difficulty,
           hasCompletedGame,
