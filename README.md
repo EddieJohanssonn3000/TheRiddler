@@ -142,6 +142,10 @@ The game is built around standard buttons, inputs, and modal dialogs so the main
 - Do not commit local secret files or private environment files.
 - The riddle answer values in this repository are intentionally stored outside the frontend bundle and should remain private in real deployments.
 
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for the full text.
+
 ## Authors
 
 Eddie Johansson and Daniella Saadon
