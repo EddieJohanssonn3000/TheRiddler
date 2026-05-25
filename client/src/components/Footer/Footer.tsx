@@ -8,7 +8,10 @@ function Footer() {
         type="button"
         className="app-footer__link"
         aria-label="Back to Loopland"
-        onClick={() => window.parent.postMessage({ type: "AMUSEMENT_CLOSE" }, "")}
+        onClick={() => {
+          console.log("Footer: posting AMUSEMENT_CLOSE to parent");
+          window.parent.postMessage({ type: "AMUSEMENT_CLOSE" }, "*");
+        }}
       >
         <img
           src={leaveTheGameImage}
